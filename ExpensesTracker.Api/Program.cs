@@ -1,3 +1,4 @@
+using ExpensesTracker.Application;
 using ExpensesTracker.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+var configuration = builder.Configuration;
+
+builder.Services
+    .AddInfrastructure(configuration)
+    .AddApplication(configuration);
 
 var app = builder.Build();
 
