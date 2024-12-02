@@ -1,4 +1,6 @@
-﻿namespace ExpensesTracker.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace ExpensesTracker.Domain.Entities;
 
 public class Expense
 {
@@ -8,6 +10,8 @@ public class Expense
     public string Name { get; set; } = string.Empty;
     public double Price { get; set; }
     public DateTime InsertionDate { get; set; } = DateTime.UtcNow;
+    [JsonIgnore]
     public User User { get; set; }
+    [JsonIgnore]
     public Category Category { get; set; }
 }
