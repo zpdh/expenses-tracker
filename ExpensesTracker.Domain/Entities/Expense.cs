@@ -8,4 +8,6 @@ public class Expense
     public string Name { get; set; } = string.Empty;
     public double Price { get; set; }
     public DateTime InsertionDate { get; set; } = DateTime.UtcNow;
+    public User User { get; set; }
+    public Category Category { get; set; }
 }
