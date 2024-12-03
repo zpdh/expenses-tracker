@@ -3,24 +3,24 @@
 namespace ExpensesTracker.Domain.Results;
 public class ValidationResult : Result, IValidationResult
 {
-    public ICollection<Error> Errors { get; }
+    public IEnumerable<Error> Errors { get; }
 
-    private ValidationResult(ICollection<Error> errors) : base(IValidationResult.ValidationError)
+    private ValidationResult(IEnumerable<Error> errors) : base(IValidationResult.ValidationError)
     {
         Errors = errors;
     }
 
-    public static ValidationResult WithErrors(ICollection<Error> errors) => new(errors);
+    public static ValidationResult WithErrors(IEnumerable<Error> errors) => new(errors);
 }
 
 public class ValidationResult<TValue> : Result<TValue>, IValidationResult
 {
-    public ICollection<Error> Errors { get; }
+    public IEnumerable<Error> Errors { get; }
 
-    private ValidationResult(ICollection<Error> errors) : base(default, IValidationResult.ValidationError)
+    private ValidationResult(IEnumerable<Error> errors) : base(default, IValidationResult.ValidationError)
     {
         Errors = errors;
     }
 
-    public static ValidationResult<TValue> WithErrors(ICollection<Error> errors) => new(errors);
+    public static ValidationResult<TValue> WithErrors(IEnumerable<Error> errors) => new(errors);
 }
