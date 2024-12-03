@@ -14,13 +14,11 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
 {
     private readonly IUserWriteRepository _writeRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<CreateUserRequest> _validator;
 
-    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork, IValidator<CreateUserRequest> validator)
+    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork)
     {
         _writeRepository = writeRepository;
         _unitOfWork = unitOfWork;
-        _validator = validator;
     }
 
     public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -30,9 +28,14 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
             request.Params.Email,
             request.Params.Password);
 
-        await _writeRepository.InsertAsync(user);
-        await _unitOfWork.SaveChangesAsync();
+        await AddToDatabaseAsync(user);
 
         return Result.Success();
+    }
+
+    private async Task AddToDatabaseAsync(Domain.Entities.User user)
+    {
+        await _writeRepository.AddAsync(user);
+        await _unitOfWork.SaveChangesAsync();
     }
 }

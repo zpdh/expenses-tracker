@@ -30,7 +30,7 @@ public static class Dependencies
 
     private static void AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, IUnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IUserReadRepository, UserRepository>();
         services.AddScoped<IUserWriteRepository, UserRepository>();

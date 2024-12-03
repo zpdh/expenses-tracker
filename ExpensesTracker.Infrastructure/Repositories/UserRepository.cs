@@ -28,7 +28,7 @@ public class UserRepository : IUserReadRepository, IUserWriteRepository
         return user;
     }
 
-    public async Task InsertAsync(User user)
+    public async Task AddAsync(User user)
     {
         await _context.Users.AddAsync(user);
     }
