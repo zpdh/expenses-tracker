@@ -16,8 +16,4 @@
       <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Behaviors\" />
-    </ItemGroup>
-
 </Project>
