@@ -1,10 +1,8 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
-using ExpensesTracker.Application.Validators;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
 using ExpensesTracker.Domain.Results;
-using MediatR;
 
 namespace ExpensesTracker.Application.User.Commands;
 

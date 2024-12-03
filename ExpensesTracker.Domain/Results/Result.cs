@@ -25,9 +25,9 @@ public class Result
     public static Result Success() => new(Error.None);
     public static Result<TValue> Success<TValue>(TValue value) => new(value, Error.None);
     public static Result Failure(Error error) => new(error);
-    public static Result<TValue> Failure<TValue>(TValue value, Error error) => new(value, error);
+    public static Result<TValue> Failure<TValue>(Error error) => new(default, error);
     public static Result Create(bool condition) => condition ? Success() : Failure(Error.ConditionNotMet);
-    public static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure(value, Error.Null);
+    public static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure<TValue>(Error.Null);
 }
 
 public class Result<TValue> : Result
@@ -38,4 +38,6 @@ public class Result<TValue> : Result
     {
         _value = value;
     }
+
+    public static implicit operator Result<TValue>(TValue value) => Create(value);
 }
