@@ -22,4 +22,9 @@ public static class StringExtensions
             return false;
         }
     }
+
+    public static bool IsInvalidEmail(this string email)
+    {
+        return !IsValidEmail(email);
+    }
 }

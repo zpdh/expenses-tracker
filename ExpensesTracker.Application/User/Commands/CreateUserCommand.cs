@@ -1,4 +1,6 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
+using ExpensesTracker.Domain.Errors.Implementations;
+using ExpensesTracker.Domain.Extensions;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
@@ -6,7 +8,7 @@ using ExpensesTracker.Domain.Results;
 
 namespace ExpensesTracker.Application.User.Commands;
 
-public sealed record CreateUserCommand(CreateUserRequest Params) : ICommand;
+public sealed record CreateUserCommand(CreateUserRequest Request) : ICommand;
 
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
 {
@@ -19,12 +21,19 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateUserCommand command, CancellationToken cancellationToken)
     {
         var user = new Domain.Entities.User(
-            request.Params.Name,
-            request.Params.Email,
-            request.Params.Password);
+            command.Request.Name,
+            command.Request.Email,
+            command.Request.Password);
+
+        var validationResult = Validate(command.Request);
+
+        if (validationResult.IsFailure)
+        {
+            return validationResult;
+        }
 
         await AddToDatabaseAsync(user);
 
@@ -35,5 +44,25 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
     {
         await _writeRepository.AddAsync(user);
         await _unitOfWork.SaveChangesAsync();
+    }
+
+    private static Result Validate(CreateUserRequest request)
+    {
+        if (request.Name.Length is < 4 or > 36)
+        {
+            return UserError.UsernameLength;
+        }
+
+        if (request.Email.IsInvalidEmail())
+        {
+            return UserError.InvalidEmail;
+        }
+
+        if (request.Password.Length is < 6 or > 32)
+        {
+            return UserError.PasswordLength;
+        }
+
+        return Result.Success();
     }
 }
