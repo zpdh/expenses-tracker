@@ -1,4 +1,5 @@
 ﻿using ExpensesTracker.Domain.Errors;
+using ExpensesTracker.Domain.Errors.Base;
 
 namespace ExpensesTracker.Domain.Results;
 

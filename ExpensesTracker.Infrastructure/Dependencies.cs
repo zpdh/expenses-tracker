@@ -13,6 +13,7 @@ public static class Dependencies
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDatabase(configuration);
+        services.AddRepositories();
 
         return services;
     }
