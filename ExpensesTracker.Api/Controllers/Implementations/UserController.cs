@@ -7,21 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;
 
-public class UserController : BaseController
+public class UserController(ISender sender) : ApiController(sender)
 {
-    private readonly ISender _sender;
-
-    public UserController(ISender sender)
-    {
-        _sender = sender;
-    }
-
     [HttpGet]
     public async Task<IActionResult> GetUserById(int id, CancellationToken cancellationToken)
     {
         var command = new GetUserByIdQuery(id);
 
-        var result = await _sender.Send(command, cancellationToken);
+        var result = await Sender.Send(command, cancellationToken);
 
         return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
     }
@@ -31,8 +24,8 @@ public class UserController : BaseController
     {
         var command = new CreateUserCommand(request);
 
-        var result = await _sender.Send(command, cancellationToken);
+        var result = await Sender.Send(command, cancellationToken);
 
-        return result.IsSuccess ? Ok() : BadRequest(result.Error);
+        return result.IsSuccess ? Created() : HandleFailure(result);
     }
 }

@@ -46,19 +46,19 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
         return errors;
     }
 
-    private static TResult CreateValidationResult<TResult>(IEnumerable<Error> errors) where TResult : Result
+    private static TResult CreateValidationResult<TResult>(Error[] errors) where TResult : Result
     {
         return typeof(TResult) == typeof(Result)
             ? ResultWithoutGenericType<TResult>(errors)
             : ResultWithGenericType<TResult>(errors);
     }
 
-    private static TResult ResultWithoutGenericType<TResult>(IEnumerable<Error> errors) where TResult : Result
+    private static TResult ResultWithoutGenericType<TResult>(Error[] errors) where TResult : Result
     {
         return (ValidationResult.WithErrors(errors) as TResult)!;
     }
 
-    private static TResult ResultWithGenericType<TResult>(IEnumerable<Error> errors) where TResult : Result
+    private static TResult ResultWithGenericType<TResult>(Error[] errors) where TResult : Result
     {
         var validationResult = typeof(ValidationResult<>)
             .GetGenericTypeDefinition()
