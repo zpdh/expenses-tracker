@@ -1,6 +1,5 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
 using ExpensesTracker.Domain.Errors.Implementations;
-using ExpensesTracker.Domain.Extensions;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
@@ -13,12 +12,14 @@ public sealed record CreateUserCommand(CreateUserRequest Request) : ICommand;
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
 {
     private readonly IUserWriteRepository _writeRepository;
+    private readonly IUserReadRepository _readRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork)
+    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork, IUserReadRepository readRepository)
     {
         _writeRepository = writeRepository;
         _unitOfWork = unitOfWork;
+        _readRepository = readRepository;
     }
 
     public async Task<Result> Handle(CreateUserCommand command, CancellationToken cancellationToken)

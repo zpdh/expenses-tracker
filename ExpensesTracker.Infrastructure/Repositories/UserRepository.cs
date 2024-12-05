@@ -28,6 +28,16 @@ public class UserRepository : IUserReadRepository, IUserWriteRepository
         return user;
     }
 
+    public async Task<bool> IsEmailUniqueAsync(string email)
+    {
+        const string query = "SELECT * From Users WHERE Email = @email";
+        var parameters = new { Email = email };
+
+        var user = await _connection.QueryFirstOrDefaultAsync<User>(query, parameters);
+
+        return user is null;
+    }
+
     public async Task AddAsync(User user)
     {
         await _context.Users.AddAsync(user);

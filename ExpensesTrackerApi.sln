@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Application", "ExpensesTracker.Application\ExpensesTracker.Application.csproj", "{8B491616-0821-4156-91B5-FCDA89F4D857}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Api.Tests\Api.Tests.csproj", "{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,7 @@ Global
 		{84847B4F-5229-40B2-B565-FE28F07C6E94} = {20CB154B-4E29-420F-96E6-162D5545E337}
 		{477F9E7F-6861-4293-B291-24A32DE99338} = {20CB154B-4E29-420F-96E6-162D5545E337}
 		{8B491616-0821-4156-91B5-FCDA89F4D857} = {20CB154B-4E29-420F-96E6-162D5545E337}
+		{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB} = {A1936163-5D0F-49FF-8A50-02E55C19D3DE}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F7DE8D9F-4C1A-4158-91B8-554AAA4521F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{8B491616-0821-4156-91B5-FCDA89F4D857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B491616-0821-4156-91B5-FCDA89F4D857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B491616-0821-4156-91B5-FCDA89F4D857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
