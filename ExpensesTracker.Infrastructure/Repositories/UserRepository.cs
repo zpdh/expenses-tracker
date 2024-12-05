@@ -37,8 +37,8 @@ public class UserRepository : IUserReadRepository, IUserWriteRepository
     {
         var userInDb = await _context.Users.FirstAsync(u => u.Id == user.Id);
 
-        userInDb.Name = userInDb.Name;
-        userInDb.Email = userInDb.Email;
+        userInDb.Name = user.Name;
+        userInDb.Email = user.Email;
     }
 
     public async Task UpdatePasswordAsync(User user)

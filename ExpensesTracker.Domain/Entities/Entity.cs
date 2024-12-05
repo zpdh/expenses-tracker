@@ -26,7 +26,7 @@ public abstract class Entity : IEquatable<Entity>
         return !(first == second);
     }
 
-    public bool Equals(Entity? other)
+    public virtual bool Equals(Entity? other)
     {
         if (IsNullOrDifferentType(other))
         {

@@ -10,7 +10,7 @@ public abstract class ApiController : ControllerBase
 {
     protected readonly ISender Sender;
 
-    public ApiController(ISender sender)
+    protected ApiController(ISender sender)
     {
         Sender = sender;
     }
