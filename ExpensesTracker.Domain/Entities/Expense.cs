@@ -9,8 +9,19 @@ public sealed class Expense : Entity
     public string Name { get; set; } = string.Empty;
     public double Price { get; set; }
     public DateTime InsertionDate { get; set; } = DateTime.UtcNow;
-    [JsonIgnore]
-    public User User { get; set; }
-    [JsonIgnore]
-    public Category Category { get; set; }
+    [JsonIgnore] public User User { get; set; }
+    [JsonIgnore] public Category Category { get; set; }
+
+    public Expense(int categoryId, int userId, string name, double price)
+    {
+        CategoryId = categoryId;
+        UserId = userId;
+        Name = name;
+        Price = price;
+    }
+
+    private Expense()
+    {
+
+    }
 }

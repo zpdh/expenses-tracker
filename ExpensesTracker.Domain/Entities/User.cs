@@ -16,8 +16,7 @@ public sealed class User : Entity
         Password = password;
     }
 
-    public User()
+    private User()
     {
-
     }
 }
