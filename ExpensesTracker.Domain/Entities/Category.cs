@@ -2,9 +2,8 @@
 
 namespace ExpensesTracker.Domain.Entities;
 
-public class Category
+public sealed class Category : Entity
 {
-    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     [JsonIgnore]
     public IEnumerable<Expense> Expenses { get; set; } = default!;
