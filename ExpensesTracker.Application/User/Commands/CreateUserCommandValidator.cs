@@ -11,6 +11,7 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         RuleFor(cmd => cmd.Request.Name)
             .NotEmpty()
+            .WithError(UserError.NullUsername)
             .DependentRules(() => {
                 RuleFor(cmd => cmd.Request.Name)
                     .MaximumLength(36)
@@ -19,6 +20,7 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 
         RuleFor(cmd => cmd.Request.Email)
             .NotEmpty()
+            .WithError(UserError.NullEmail)
             .DependentRules(() => {
                 RuleFor(cmd => cmd.Request.Email)
                     .EmailAddress()
@@ -29,11 +31,7 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
             });
 
         RuleFor(cmd => cmd.Request.Password)
-            .NotEmpty()
-            .DependentRules(() => {
-                RuleFor(cmd => cmd.Request.Password)
-                    .Length(6, 32)
-                    .WithError(UserError.PasswordLength);
-            });
+            .Length(6, 32)
+            .WithError(UserError.PasswordLength);
     }
 }

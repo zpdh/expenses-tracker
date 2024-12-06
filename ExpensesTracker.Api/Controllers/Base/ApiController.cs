@@ -1,4 +1,5 @@
 ﻿using ExpensesTracker.Domain.Errors.Base;
+using ExpensesTracker.Domain.Responses;
 using ExpensesTracker.Domain.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -46,14 +47,14 @@ public abstract class ApiController : ControllerBase
                 validationResult.Errors));
     }
 
-    private static ProblemDetails CreateProblemDetails(string title, int statusCode, Error error, Error[]? errors = null)
+    private static CustomProblemDetails CreateProblemDetails(string title, int statusCode, Error error, Error[]? errors = null)
     {
-        return new ProblemDetails
+        return new CustomProblemDetails
         {
             Title = title,
             Detail = error.ErrorMessage,
-            Status = statusCode,
-            Extensions = { { nameof(errors), errors } }
+            StatusCode = statusCode,
+            Errors = errors
         };
     }
 }
