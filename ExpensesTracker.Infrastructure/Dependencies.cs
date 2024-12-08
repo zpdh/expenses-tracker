@@ -1,10 +1,14 @@
-﻿using ExpensesTracker.Domain.Repositories;
+﻿using ExpensesTracker.Domain.Infrastructure.Tokens;
+using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
+using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Data;
 using ExpensesTracker.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ExpensesTracker.Infrastructure;
 
@@ -14,6 +18,7 @@ public static class Dependencies
     {
         services.AddDatabase(configuration);
         services.AddRepositories();
+        services.AddTokenServices(configuration);
 
         return services;
     }
@@ -40,5 +45,11 @@ public static class Dependencies
 
         services.AddScoped<ExpenseRepository>();
         services.AddScoped<ExpenseRepository>();
+    }
+
+    private static void AddTokenServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddScoped<IJwtGenerator, JwtGenerator>();
+        services.AddScoped<IJwtValidator, JwtValidator>();
     }
 }
