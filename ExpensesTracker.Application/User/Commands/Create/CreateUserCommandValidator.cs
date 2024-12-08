@@ -3,7 +3,7 @@ using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Repositories.User;
 using FluentValidation;
 
-namespace ExpensesTracker.Application.User.Commands;
+namespace ExpensesTracker.Application.User.Commands.Create;
 
 public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {

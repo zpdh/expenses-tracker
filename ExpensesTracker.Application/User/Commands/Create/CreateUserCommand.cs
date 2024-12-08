@@ -1,11 +1,10 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
-using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
 using ExpensesTracker.Domain.Results;
 
-namespace ExpensesTracker.Application.User.Commands;
+namespace ExpensesTracker.Application.User.Commands.Create;
 
 public sealed record CreateUserCommand(CreateUserRequest Request) : ICommand;
 

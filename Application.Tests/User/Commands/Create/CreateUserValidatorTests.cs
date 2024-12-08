@@ -1,4 +1,5 @@
 ﻿using ExpensesTracker.Application.User.Commands;
+using ExpensesTracker.Application.User.Commands.Create;
 using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
