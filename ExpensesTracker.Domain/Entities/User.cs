@@ -9,7 +9,7 @@ public sealed class User : Entity
     public string Password { get; set; } = string.Empty;
     [JsonIgnore] public IEnumerable<Expense> Expenses { get; set; } = [];
 
-    public User(string name, string email, string password)
+    private User(string name, string email, string password)
     {
         Name = name;
         Email = email;
@@ -19,4 +19,6 @@ public sealed class User : Entity
     private User()
     {
     }
+
+    public static User Create(string name, string email, string password) => new(name, email, password);
 }

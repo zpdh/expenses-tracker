@@ -12,19 +12,17 @@ public sealed record CreateUserCommand(CreateUserRequest Request) : ICommand;
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
 {
     private readonly IUserWriteRepository _writeRepository;
-    private readonly IUserReadRepository _readRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork, IUserReadRepository readRepository)
+    public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork)
     {
         _writeRepository = writeRepository;
         _unitOfWork = unitOfWork;
-        _readRepository = readRepository;
     }
 
     public async Task<Result> Handle(CreateUserCommand command, CancellationToken cancellationToken)
     {
-        var user = new Domain.Entities.User(
+        var user = Domain.Entities.User.Create(
             command.Request.Name,
             command.Request.Email,
             command.Request.Password);
