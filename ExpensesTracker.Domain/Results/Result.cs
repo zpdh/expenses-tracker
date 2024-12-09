@@ -27,7 +27,7 @@ public class Result
     public static Result Failure(Error error) => new(error);
     public static Result<TValue> Failure<TValue>(Error error) => new(default, error);
     public static Result Create(bool condition) => condition ? Success() : Failure(Error.ConditionNotMet);
-    public static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure<TValue>(Error.Null);
+    public static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure<TValue>(Error.NullArgument);
 }
 
 public class Result<TValue> : Result

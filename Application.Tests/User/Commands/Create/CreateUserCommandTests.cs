@@ -17,7 +17,7 @@ public class CreateUserCommandTests
     {
         var request = new CreateUserRequest("Name", "email@test.com", "Password");
         var command = new CreateUserCommand(request);
-        var handler = CreateHandler(request.Password);
+        var handler = CreateHandler();
 
         var result = await handler.Handle(command, default);
 
@@ -25,11 +25,11 @@ public class CreateUserCommandTests
         result.Error.Should().Be(Error.None);
     }
 
-    private static CreateUserCommandHandler CreateHandler(string password)
+    private static CreateUserCommandHandler CreateHandler()
     {
         var writeRepository = UserWriteRepositoryMock.Create.Object;
         var unitOfWork = UnitOfWorkMock.Create.Object;
-        var hasher = HasherServiceMock.Create(password).Object;
+        var hasher = HasherServiceMock.Create().Object;
 
         return new CreateUserCommandHandler(writeRepository, unitOfWork, hasher);
     }
