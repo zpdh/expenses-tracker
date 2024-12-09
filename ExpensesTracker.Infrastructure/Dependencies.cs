@@ -1,8 +1,10 @@
-﻿using ExpensesTracker.Domain.Infrastructure.Tokens;
+﻿using ExpensesTracker.Domain.Infrastructure.Hasher;
+using ExpensesTracker.Domain.Infrastructure.Tokens;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Data;
+using ExpensesTracker.Infrastructure.Hasher;
 using ExpensesTracker.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,8 @@ public static class Dependencies
     {
         services.AddDatabase(configuration);
         services.AddRepositories();
-        services.AddTokenServices(configuration);
+        services.AddTokenServices();
+        services.AddHasher();
 
         return services;
     }
@@ -47,9 +50,14 @@ public static class Dependencies
         services.AddScoped<ExpenseRepository>();
     }
 
-    private static void AddTokenServices(this IServiceCollection services, IConfiguration configuration)
+    private static void AddTokenServices(this IServiceCollection services)
     {
         services.AddScoped<IJwtGenerator, JwtGenerator>();
         services.AddScoped<IJwtValidator, JwtValidator>();
+    }
+
+    private static void AddHasher(this IServiceCollection services)
+    {
+        services.AddScoped<IHasherService, BCryptHasher>();
     }
 }

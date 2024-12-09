@@ -1,5 +1,6 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
 using ExpensesTracker.Domain.Errors.Implementations;
+using ExpensesTracker.Domain.Infrastructure.Hasher;
 using ExpensesTracker.Domain.Infrastructure.Tokens;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
@@ -14,18 +15,20 @@ public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, 
 {
     private readonly IUserReadRepository _userReadRepository;
     private readonly IJwtGenerator _jwtGenerator;
+    private readonly IHasherService _hasherService;
 
-    public LoginUserCommandHandler(IUserReadRepository userReadRepository, IJwtGenerator jwtGenerator)
+    public LoginUserCommandHandler(IUserReadRepository userReadRepository, IJwtGenerator jwtGenerator, IHasherService hasherService)
     {
         _userReadRepository = userReadRepository;
         _jwtGenerator = jwtGenerator;
+        _hasherService = hasherService;
     }
 
     public async Task<Result<TokenResponse>> Handle(LoginUserCommand command, CancellationToken cancellationToken)
     {
         var user = await _userReadRepository.GetUserByEmailAsync(command.Request.Email);
 
-        if (user is null)
+        if (user is null || _hasherService.IsInvalid(command.Request.Password, user.Password))
         {
             return Result.Failure<TokenResponse>(UserError.InvalidCredentials);
         }
