@@ -46,4 +46,10 @@ app.MapControllers();
 
 await app.RunAsync();
 
-public sealed partial class Program;
+public partial class Program
+{
+    protected Program()
+    {
+
+    }
+}

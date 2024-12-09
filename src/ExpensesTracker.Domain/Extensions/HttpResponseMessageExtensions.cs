@@ -16,7 +16,7 @@ public static class HttpResponseMessageExtensions
 
         if (problemDetails is null)
         {
-            throw new NullReferenceException("Problem details is null.");
+            throw new InvalidOperationException("Problem details is null.");
         }
 
         return problemDetails;
