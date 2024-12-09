@@ -5,6 +5,7 @@ using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
 using FluentAssertions;
+using TestUtils.Hasher;
 using TestUtils.Repositories;
 
 namespace Application.Tests.User.Commands.Create;
@@ -16,7 +17,7 @@ public class CreateUserCommandTests
     {
         var request = new CreateUserRequest("Name", "email@test.com", "Password");
         var command = new CreateUserCommand(request);
-        var handler = CreateHandler();
+        var handler = CreateHandler(request.Password);
 
         var result = await handler.Handle(command, default);
 
@@ -24,11 +25,12 @@ public class CreateUserCommandTests
         result.Error.Should().Be(Error.None);
     }
 
-    private static CreateUserCommandHandler CreateHandler()
+    private static CreateUserCommandHandler CreateHandler(string password)
     {
         var writeRepository = UserWriteRepositoryMock.Create.Object;
         var unitOfWork = UnitOfWorkMock.Create.Object;
+        var hasher = HasherServiceMock.Create(password).Object;
 
-        return new CreateUserCommandHandler(writeRepository, unitOfWork);
+        return new CreateUserCommandHandler(writeRepository, unitOfWork, hasher);
     }
 }
