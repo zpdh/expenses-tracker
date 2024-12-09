@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj" />
+      <ProjectReference Include="..\..\src\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>

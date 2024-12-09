@@ -1,22 +1,21 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{20CB154B-4E29-420F-96E6-162D5545E337}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A1936163-5D0F-49FF-8A50-02E55C19D3DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Api", "ExpensesTracker.Api\ExpensesTracker.Api.csproj", "{F7DE8D9F-4C1A-4158-91B8-554AAA4521F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Api", "src\ExpensesTracker.Api\ExpensesTracker.Api.csproj", "{F7DE8D9F-4C1A-4158-91B8-554AAA4521F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Domain", "ExpensesTracker.Domain\ExpensesTracker.Domain.csproj", "{84847B4F-5229-40B2-B565-FE28F07C6E94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Domain", "src\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj", "{84847B4F-5229-40B2-B565-FE28F07C6E94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Infrastructure", "ExpensesTracker.Infrastructure\ExpensesTracker.Infrastructure.csproj", "{477F9E7F-6861-4293-B291-24A32DE99338}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Infrastructure", "src\ExpensesTracker.Infrastructure\ExpensesTracker.Infrastructure.csproj", "{477F9E7F-6861-4293-B291-24A32DE99338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Application", "ExpensesTracker.Application\ExpensesTracker.Application.csproj", "{8B491616-0821-4156-91B5-FCDA89F4D857}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensesTracker.Application", "src\ExpensesTracker.Application\ExpensesTracker.Application.csproj", "{8B491616-0821-4156-91B5-FCDA89F4D857}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Api.Tests\Api.Tests.csproj", "{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "tests\Api.Tests\Api.Tests.csproj", "{4FE7AC00-4010-4B4D-8CB2-748BC6FE7ECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{E3BADD2E-E0B0-45C2-9F7C-3CDE13FCE453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{E3BADD2E-E0B0-45C2-9F7C-3CDE13FCE453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{F6CF5D42-93AE-438C-82F0-4383E854C578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "tests\TestUtils\TestUtils.csproj", "{F6CF5D42-93AE-438C-82F0-4383E854C578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
