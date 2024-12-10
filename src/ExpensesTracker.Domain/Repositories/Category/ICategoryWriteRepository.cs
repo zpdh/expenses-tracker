@@ -2,4 +2,5 @@
 
 public interface ICategoryWriteRepository
 {
+    Task AddCategoryAsync(Entities.Category category);
 }

@@ -1,5 +1,7 @@
 ﻿using ExpensesTracker.Api.Controllers.Base;
+using ExpensesTracker.Application.Category.Commands;
 using ExpensesTracker.Application.Category.Queries;
+using ExpensesTracker.Domain.Requests.Category;
 using ExpensesTracker.Domain.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -22,5 +24,15 @@ public class CategoryController : ApiController
         var result = await Sender.Send(query, cancellationToken);
 
         return Ok(result.Value);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request, CancellationToken cancellationToken)
+    {
+        var command = new AddCategoryCommand(request);
+
+        var result = await Sender.Send(command, cancellationToken);
+
+        return result.IsSuccess ? Created() : HandleFailure(result);
     }
 }

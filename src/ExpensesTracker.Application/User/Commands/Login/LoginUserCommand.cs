@@ -30,7 +30,7 @@ public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, 
 
         if (user is null || _hasherService.IsInvalid(command.Request.Password, user.Password))
         {
-            return Result.Failure<TokenResponse>(UserError.InvalidCredentials);
+            return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
         }
 
         var token = _jwtGenerator.Generate(user);

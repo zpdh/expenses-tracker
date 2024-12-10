@@ -32,7 +32,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.EmptyUsername.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.EmptyUsername.ErrorMessage);
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.UsernameLength.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.UsernameLength.ErrorMessage);
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.EmptyEmail.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.EmptyEmail.ErrorMessage);
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.InvalidEmail.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.InvalidEmail.ErrorMessage);
     }
 
     [Fact]
@@ -84,7 +84,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.EmailAlreadyRegistered.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.EmailAlreadyRegistered.ErrorMessage);
     }
 
     [Fact]
@@ -97,7 +97,7 @@ public class CreateUserValidatorTests
         var result = await validator.ValidateAsync(command);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserError.PasswordLength.ErrorMessage);
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage == UserErrors.PasswordLength.ErrorMessage);
     }
 
 

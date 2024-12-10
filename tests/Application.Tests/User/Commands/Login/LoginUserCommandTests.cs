@@ -34,7 +34,7 @@ public class LoginUserCommandTests
         var result = await handler.Handle(command, default);
 
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(UserError.InvalidCredentials);
+        result.Error.Should().Be(UserErrors.InvalidCredentials);
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public class LoginUserCommandTests
         var result = await handler.Handle(command, default);
 
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(UserError.InvalidCredentials);
+        result.Error.Should().Be(UserErrors.InvalidCredentials);
     }
 
     private static LoginUserCommandHandler CreateHandler(string? password = null, string? email = null)

@@ -26,4 +26,24 @@ public class CategoryRepository : ICategoryReadRepository, ICategoryWriteReposit
 
         return categories.AsList();
     }
+
+    public bool CategoryWithNameDoesNotExist(string name)
+    {
+        return GetCategoryByName(name) is null;
+    }
+
+    private Category? GetCategoryByName(string name)
+    {
+        const string query = "SELECT * FROM Categories WHERE Name = @name";
+        var parameters = new { Name = name };
+
+        var category = _connection.QueryFirstOrDefault<Category>(query, parameters);
+
+        return category;
+    }
+
+    public async Task AddCategoryAsync(Category category)
+    {
+        await _context.Categories.AddAsync(category);
+    }
 }

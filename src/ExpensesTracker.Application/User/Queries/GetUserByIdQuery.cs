@@ -24,7 +24,7 @@ public sealed class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, Ge
 
         if (user is null)
         {
-            return Result.Failure<GetUserByIdResponse>(UserError.UserNotFound(request.Id));
+            return Result.Failure<GetUserByIdResponse>(UserErrors.UserNotFound(request.Id));
         }
 
         var response = new GetUserByIdResponse(user.Id, user.Name, user.Email);

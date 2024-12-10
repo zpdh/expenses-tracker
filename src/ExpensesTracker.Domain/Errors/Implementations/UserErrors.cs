@@ -2,7 +2,7 @@
 
 namespace ExpensesTracker.Domain.Errors.Implementations;
 
-public sealed record UserError
+public sealed record UserErrors
 {
     public static Error UsernameLength => new("The provided username must have, at most, 36 characters.");
     public static Error EmptyUsername => new("The provided username must not be empty.");

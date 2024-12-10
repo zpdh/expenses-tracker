@@ -11,27 +11,27 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         RuleFor(cmd => cmd.Request.Name)
             .NotEmpty()
-            .WithError(UserError.EmptyUsername)
+            .WithError(UserErrors.EmptyUsername)
             .DependentRules(() => {
                 RuleFor(cmd => cmd.Request.Name)
                     .MaximumLength(36)
-                    .WithError(UserError.UsernameLength);
+                    .WithError(UserErrors.UsernameLength);
             });
 
         RuleFor(cmd => cmd.Request.Email)
             .NotEmpty()
-            .WithError(UserError.EmptyEmail)
+            .WithError(UserErrors.EmptyEmail)
             .DependentRules(() => {
                 RuleFor(cmd => cmd.Request.Email)
                     .EmailAddress()
-                    .WithError(UserError.InvalidEmail);
+                    .WithError(UserErrors.InvalidEmail);
 
                 RuleFor(cmd => cmd.Request.Email)
-                    .Must(email => readRepository.IsEmailUnique(email)).WithError(UserError.EmailAlreadyRegistered);
+                    .Must(readRepository.IsEmailUnique).WithError(UserErrors.EmailAlreadyRegistered);
             });
 
         RuleFor(cmd => cmd.Request.Password)
             .Length(6, 32)
-            .WithError(UserError.PasswordLength);
+            .WithError(UserErrors.PasswordLength);
     }
 }
