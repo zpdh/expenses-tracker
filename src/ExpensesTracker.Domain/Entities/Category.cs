@@ -16,4 +16,6 @@ public sealed class Category : Entity
     {
 
     }
+
+    public static Category Create(string name) => new(name);
 }
