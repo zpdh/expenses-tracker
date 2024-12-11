@@ -6,7 +6,7 @@ using ExpensesTracker.Domain.Infrastructure.Tokens;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ExpensesTracker.Infrastructure.Authentication;
+namespace ExpensesTracker.Infrastructure.Authentication.Jwt;
 
 public sealed class JwtGenerator : IJwtGenerator
 {

@@ -1,4 +1,4 @@
-﻿namespace ExpensesTracker.Infrastructure.Authentication;
+﻿namespace ExpensesTracker.Infrastructure.Authentication.Jwt;
 
 public sealed class JwtOptions
 {
