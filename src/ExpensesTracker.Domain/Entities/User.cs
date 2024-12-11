@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ExpensesTracker.Domain.Entities.Base;
 
 namespace ExpensesTracker.Domain.Entities;
 

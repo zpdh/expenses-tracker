@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ExpensesTracker.Domain.Entities;
+namespace ExpensesTracker.Domain.Entities.Base;
 
 public abstract class Entity : IEquatable<Entity>
 {

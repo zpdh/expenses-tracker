@@ -14,7 +14,7 @@ namespace ExpensesTracker.Api.Controllers.Implementations;
 public class UserController(ISender sender) : ApiController(sender)
 {
     [HttpGet]
-    [HasPermission(Permission.Read)]
+    [Authorize]
     public async Task<IActionResult> GetUserById(int id, CancellationToken cancellationToken)
     {
         var command = new GetUserByIdQuery(id);

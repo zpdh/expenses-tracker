@@ -1,7 +1,10 @@
-﻿namespace ExpensesTracker.Infrastructure.Authentication.Permissions;
+﻿using ExpensesTracker.Domain.Entities.Base;
 
-public enum Permission
+namespace ExpensesTracker.Infrastructure.Authentication.Permissions;
+
+public class Permission : Enumeration<Permission>
 {
-    Read = 1,
-    Write = 2
+    private Permission(int value, string name) : base(value, name)
+    {
+    }
 }
