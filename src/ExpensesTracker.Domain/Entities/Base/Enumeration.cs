@@ -4,25 +4,35 @@ namespace ExpensesTracker.Domain.Entities.Base;
 
 public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where TEnum : Enumeration<TEnum>
 {
-    private static readonly Dictionary<int, TEnum> Enumerations = CreateEnumerations();
+    private static readonly Dictionary<int, TEnum> GetEnumerations = CreateEnumerations();
 
-    public int Value { get; protected init; }
+    public int Id { get; protected init; }
     public string Name { get; protected init; }
 
-    protected Enumeration(int value, string name)
+    protected Enumeration(int id, string name)
     {
-        Value = value;
+        Id = id;
         Name = name;
+    }
+
+    private Enumeration()
+    {
+
     }
 
     public static TEnum? FromValue(int value)
     {
-        return Enumerations.GetValueOrDefault(value);
+        return GetEnumerations.GetValueOrDefault(value);
     }
 
     public static TEnum? FromName(string name)
     {
-        return Enumerations.Values.SingleOrDefault(enumeration => enumeration.Name == name);
+        return GetEnumerations.Values.SingleOrDefault(enumeration => enumeration.Name == name);
+    }
+
+    public static IReadOnlyCollection<TEnum> GetValues()
+    {
+        return GetEnumerations.Values.ToList();
     }
 
     private static Dictionary<int, TEnum> CreateEnumerations()
@@ -34,7 +44,7 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
             .Where(fieldInfo => enumerationType.IsAssignableFrom(fieldInfo.FieldType))
             .Select(fieldInfo => (TEnum)fieldInfo.GetValue(default)!);
 
-        return fields.ToDictionary(type => type.Value);
+        return fields.ToDictionary(type => type.Id);
     }
 
     public bool Equals(Enumeration<TEnum>? other)
@@ -44,7 +54,7 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
             return false;
         }
 
-        return GetType() == other.GetType() && Value == other.Value;
+        return GetType() == other.GetType() && Id == other.Id;
     }
 
     public override bool Equals(object? obj)
@@ -54,7 +64,7 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
 
     public override int GetHashCode()
     {
-        return Value.GetHashCode();
+        return Id.GetHashCode();
     }
 
     public override string ToString()

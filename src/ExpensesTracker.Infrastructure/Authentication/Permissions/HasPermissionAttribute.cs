@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ExpensesTracker.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExpensesTracker.Infrastructure.Authentication.Permissions;
 

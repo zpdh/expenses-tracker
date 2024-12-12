@@ -1,5 +1,6 @@
 ﻿using ExpensesTracker.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Permission = ExpensesTracker.Domain.Enums.Permission;
 
 namespace ExpensesTracker.Infrastructure.Data;
 
@@ -8,6 +9,8 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public DbSet<User> Users { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Expense> Expenses { get; set; }
+    public DbSet<Role> Roles { get; set; }
+    public DbSet<ExpensesTracker.Domain.Entities.Permission> Permissions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,5 +25,26 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
             .WithOne(exp => exp.Category)
             .HasForeignKey(exp => exp.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Role>()
+            .HasMany(role => role.Permissions)
+            .WithMany();
+
+        modelBuilder.Entity<Role>()
+            .HasMany(role => role.Users)
+            .WithMany();
+
+        modelBuilder.Entity<Role>()
+            .HasData(Role.GetValues());
+
+        var permissions = Enum.GetValues<Permission>()
+            .Select(perm => new ExpensesTracker.Domain.Entities.Permission
+            {
+                Id = (int)perm,
+                Name = perm.ToString()
+            });
+
+        modelBuilder.Entity<ExpensesTracker.Domain.Entities.Permission>()
+            .HasData(permissions);
     }
 }
