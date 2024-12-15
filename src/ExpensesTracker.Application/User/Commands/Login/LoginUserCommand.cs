@@ -33,7 +33,7 @@ public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, 
             return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
         }
 
-        var token = _jwtGenerator.Generate(user);
+        var token = await _jwtGenerator.GenerateAsync(user);
 
         return new TokenResponse(token);
     }

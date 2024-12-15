@@ -33,16 +33,11 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
 
         modelBuilder.Entity<Role>()
             .HasMany(role => role.Permissions)
-            .WithMany();
+            .WithMany()
+            .UsingEntity<PermissionRole>();
 
         modelBuilder.Entity<Role>()
             .HasData(Role.GetValues());
-
-        modelBuilder.Entity<RolePermission>()
-            .HasKey(rp => new { rp.RoleId, rp.PermissionId });
-
-        modelBuilder.Entity<RolePermission>()
-            .HasData(RolePermission.Create(Role.Registered, Permission.Registered));
 
         var permissions = Enum.GetValues<Permission>()
             .Select(perm => new ExpensesTracker.Domain.Entities.Permission
@@ -50,6 +45,12 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
                 Id = (int)perm,
                 Name = perm.ToString()
             });
+
+        modelBuilder.Entity<PermissionRole>()
+            .HasKey(rp => new { rp.RoleId, rp.PermissionId });
+
+        modelBuilder.Entity<PermissionRole>()
+            .HasData(PermissionRole.Create(Role.Registered, Permission.Registered));
 
         modelBuilder.Entity<ExpensesTracker.Domain.Entities.Permission>()
             .HasData(permissions);

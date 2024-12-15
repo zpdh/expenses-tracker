@@ -10,7 +10,7 @@ public class JwtGeneratorMock
     {
         var mock = new Mock<IJwtGenerator>();
 
-        mock.Setup(generator => generator.Generate(It.IsAny<User>())).Returns(Guid.NewGuid().ToString);
+        mock.Setup(generator => generator.GenerateAsync(It.IsAny<User>())).ReturnsAsync(Guid.NewGuid().ToString);
 
         return mock;
     }
