@@ -15,6 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
+builder.Services.AddAuthorization();
+
 builder.Services
     .ConfigureOptions<JwtOptionsSetup>()
     .ConfigureOptions<JwtBearerOptionsSetup>();

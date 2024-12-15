@@ -53,5 +53,4 @@ public sealed class JwtGenerator : IJwtGenerator
         var tokenValue = tokenHandler.WriteToken(token);
         return tokenValue;
     }
-
 }

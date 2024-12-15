@@ -3,6 +3,7 @@ using ExpensesTracker.Application.User.Commands;
 using ExpensesTracker.Application.User.Commands.Create;
 using ExpensesTracker.Application.User.Commands.Login;
 using ExpensesTracker.Application.User.Queries;
+using ExpensesTracker.Domain.Enums;
 using ExpensesTracker.Domain.Requests.User;
 using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using MediatR;
@@ -14,7 +15,7 @@ namespace ExpensesTracker.Api.Controllers.Implementations;
 public class UserController(ISender sender) : ApiController(sender)
 {
     [HttpGet]
-    [Authorize]
+    [HasPermission(Permission.Registered)]
     public async Task<IActionResult> GetUserById(int id, CancellationToken cancellationToken)
     {
         var command = new GetUserByIdQuery(id);

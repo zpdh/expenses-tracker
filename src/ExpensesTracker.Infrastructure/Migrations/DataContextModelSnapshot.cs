@@ -22,6 +22,26 @@ namespace ExpensesTracker.Infrastructure.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("ExpensesTracker.Domain.Entities.Base.RolePermission", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleId", "PermissionId");
+
+                    b.ToTable("RolePermission");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 1
+                        });
+                });
+
             modelBuilder.Entity("ExpensesTracker.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -162,13 +182,13 @@ namespace ExpensesTracker.Infrastructure.Migrations
 
             modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("RolesId")
                         .HasColumnType("int");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.HasKey("RoleId", "UsersId");
+                    b.HasKey("RolesId", "UsersId");
 
                     b.HasIndex("UsersId");
 
@@ -213,7 +233,7 @@ namespace ExpensesTracker.Infrastructure.Migrations
                 {
                     b.HasOne("ExpensesTracker.Domain.Entities.Role", null)
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

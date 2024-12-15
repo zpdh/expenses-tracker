@@ -5,10 +5,12 @@ using ExpensesTracker.Domain.Repositories.Category;
 using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Authentication.Jwt;
+using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using ExpensesTracker.Infrastructure.Data;
 using ExpensesTracker.Infrastructure.Hasher;
 using ExpensesTracker.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,8 @@ public static class Dependencies
         services.AddRepositories();
         services.AddAuthenticationServices();
         services.AddHasher();
+        services.AddPermissions();
+        services.AddServices();
 
         return services;
     }
@@ -60,5 +64,16 @@ public static class Dependencies
     private static void AddHasher(this IServiceCollection services)
     {
         services.AddScoped<IHasherService, BCryptHasher>();
+    }
+
+    private static void AddServices(this IServiceCollection services)
+    {
+        services.AddScoped<IPermissionService, PermissionService>();
+    }
+
+    private static void AddPermissions(this IServiceCollection services)
+    {
+        services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
     }
 }
