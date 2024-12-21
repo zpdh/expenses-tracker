@@ -1,4 +1,5 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
+using ExpensesTracker.Domain.Entities;
 using ExpensesTracker.Domain.Infrastructure.Hasher;
 using ExpensesTracker.Domain.Repositories;
 using ExpensesTracker.Domain.Repositories.User;
@@ -39,6 +40,7 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
     private async Task AddToDatabaseAsync(Domain.Entities.User user)
     {
         await _writeRepository.AddAsync(user);
+        await _writeRepository.AddRoleAsync(user, Role.Registered);
         await _unitOfWork.SaveChangesAsync();
     }
 }

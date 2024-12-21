@@ -67,6 +67,13 @@ public class UserRepository : IUserReadRepository, IUserWriteRepository
         await _context.Users.AddAsync(user);
     }
 
+    public async Task AddRoleAsync(User user, Role role)
+    {
+        var roleInDb = await _context.Roles.FirstAsync(r => r.Id == role.Id);
+
+        user.Roles.Add(roleInDb);
+    }
+
     public async Task UpdateAsync(User user)
     {
         var userInDb = await _context.Users.FirstAsync(u => u.Id == user.Id);
