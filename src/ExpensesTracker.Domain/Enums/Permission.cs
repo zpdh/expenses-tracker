@@ -2,5 +2,6 @@
 
 public enum Permission
 {
-    Registered = 1
+    Registered = 1,
+    Administrator = 2
 }

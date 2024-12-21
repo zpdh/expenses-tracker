@@ -1,4 +1,4 @@
-﻿namespace ExpensesTracker.Domain.Entities.Base;
+﻿namespace ExpensesTracker.Domain.Entities;
 
 public class PermissionRole
 {

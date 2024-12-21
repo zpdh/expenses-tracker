@@ -50,7 +50,8 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
             .HasKey(rp => new { rp.RoleId, rp.PermissionId });
 
         modelBuilder.Entity<PermissionRole>()
-            .HasData(PermissionRole.Create(Role.Registered, Permission.Registered));
+            .HasData(PermissionRole.Create(Role.Registered, Permission.Registered),
+                PermissionRole.Create(Role.Administrator, Permission.Administrator));
 
         modelBuilder.Entity<ExpensesTracker.Domain.Entities.Permission>()
             .HasData(permissions);

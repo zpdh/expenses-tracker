@@ -1,15 +1,17 @@
 ﻿using ExpensesTracker.Api.Controllers.Base;
 using ExpensesTracker.Application.Category.Commands;
 using ExpensesTracker.Application.Category.Queries;
+using ExpensesTracker.Domain.Enums;
 using ExpensesTracker.Domain.Requests.Category;
 using ExpensesTracker.Domain.Results;
+using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;
 
-[Authorize]
+[HasPermission(Permission.Registered)]
 public class CategoryController : ApiController
 {
     public CategoryController(ISender sender) : base(sender)
@@ -27,6 +29,7 @@ public class CategoryController : ApiController
     }
 
     [HttpPost]
+    [HasPermission(Permission.Administrator)]
     public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request, CancellationToken cancellationToken)
     {
         var command = new AddCategoryCommand(request);
