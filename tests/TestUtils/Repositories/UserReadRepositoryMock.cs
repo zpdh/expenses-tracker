@@ -19,4 +19,9 @@ public sealed class UserReadRepositoryMock
         mock.Setup(moq => moq.GetUserByEmail(user.Email)).Returns(user);
         mock.Setup(moq => moq.GetUserByEmailAsync(user.Email)).ReturnsAsync(user);
     }
+
+    public static void SetupGetUserById(Mock<IUserReadRepository> mock, int id, User user)
+    {
+        mock.Setup(moq => moq.GetByIdAsync(id)).ReturnsAsync(user);
+    }
 }
