@@ -1,6 +1,6 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
-using ExpensesTracker.Domain.Repositories;
-using ExpensesTracker.Domain.Repositories.Category;
+using ExpensesTracker.Domain.Infrastructure.Repositories;
+using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 using ExpensesTracker.Domain.Requests.Category;
 using ExpensesTracker.Domain.Results;
 

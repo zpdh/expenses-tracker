@@ -1,6 +1,6 @@
 ﻿using ExpensesTracker.Application.Extensions;
 using ExpensesTracker.Domain.Errors.Implementations;
-using ExpensesTracker.Domain.Repositories.Category;
+using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 using FluentValidation;
 
 namespace ExpensesTracker.Application.Category.Commands;

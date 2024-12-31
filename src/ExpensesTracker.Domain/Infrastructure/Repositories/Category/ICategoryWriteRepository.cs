@@ -1,4 +1,4 @@
-﻿namespace ExpensesTracker.Domain.Repositories.Category;
+﻿namespace ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 
 public interface ICategoryWriteRepository
 {

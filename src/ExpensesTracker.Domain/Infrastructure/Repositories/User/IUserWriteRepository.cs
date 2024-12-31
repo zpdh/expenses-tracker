@@ -1,6 +1,6 @@
 ﻿using ExpensesTracker.Domain.Entities;
 
-namespace ExpensesTracker.Domain.Repositories.User;
+namespace ExpensesTracker.Domain.Infrastructure.Repositories.User;
 
 public interface IUserWriteRepository
 {

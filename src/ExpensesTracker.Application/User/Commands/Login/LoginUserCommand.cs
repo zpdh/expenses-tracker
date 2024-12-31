@@ -1,8 +1,8 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
 using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Infrastructure.Hasher;
+using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Domain.Infrastructure.Tokens;
-using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Domain.Requests.User;
 using ExpensesTracker.Domain.Responses.Token;
 using ExpensesTracker.Domain.Results;

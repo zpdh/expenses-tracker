@@ -1,6 +1,8 @@
-﻿namespace ExpensesTracker.Infrastructure.Repositories;
+﻿using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 
-public class ExpenseRepository
+namespace ExpensesTracker.Infrastructure.Repositories;
+
+public class ExpenseRepository : IExpenseReadRepository, IExpenseWriteRepository
 {
-    
+
 }

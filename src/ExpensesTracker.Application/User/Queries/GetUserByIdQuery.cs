@@ -1,7 +1,7 @@
 ﻿using ExpensesTracker.Application.Base.Queries;
 using ExpensesTracker.Domain.Errors.Base;
 using ExpensesTracker.Domain.Errors.Implementations;
-using ExpensesTracker.Domain.Repositories.User;
+using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Domain.Responses.User;
 using ExpensesTracker.Domain.Results;
 

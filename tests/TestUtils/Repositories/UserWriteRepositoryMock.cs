@@ -1,4 +1,4 @@
-﻿using ExpensesTracker.Domain.Repositories.User;
+﻿using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using Moq;
 
 namespace TestUtils.Repositories;

@@ -1,8 +1,8 @@
 ﻿using ExpensesTracker.Domain.Infrastructure.Hasher;
+using ExpensesTracker.Domain.Infrastructure.Repositories;
+using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
+using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Domain.Infrastructure.Tokens;
-using ExpensesTracker.Domain.Repositories;
-using ExpensesTracker.Domain.Repositories.Category;
-using ExpensesTracker.Domain.Repositories.User;
 using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Authentication.Jwt;
 using ExpensesTracker.Infrastructure.Authentication.Permissions;

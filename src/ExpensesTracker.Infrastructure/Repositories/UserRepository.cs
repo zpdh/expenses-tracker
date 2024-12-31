@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Dapper;
 using ExpensesTracker.Domain.Entities;
-using ExpensesTracker.Domain.Repositories.User;
+using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 

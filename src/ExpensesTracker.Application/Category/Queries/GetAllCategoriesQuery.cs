@@ -1,5 +1,5 @@
 ﻿using ExpensesTracker.Application.Base.Queries;
-using ExpensesTracker.Domain.Repositories.Category;
+using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 using ExpensesTracker.Domain.Responses.Category;
 using ExpensesTracker.Domain.Results;
 

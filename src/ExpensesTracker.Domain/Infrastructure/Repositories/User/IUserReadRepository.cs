@@ -1,4 +1,4 @@
-﻿namespace ExpensesTracker.Domain.Repositories.User;
+﻿namespace ExpensesTracker.Domain.Infrastructure.Repositories.User;
 
 public interface IUserReadRepository
 {
