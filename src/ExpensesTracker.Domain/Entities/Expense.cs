@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ExpensesTracker.Domain.Dtos;
 using ExpensesTracker.Domain.Entities.Base;
 using ExpensesTracker.Domain.Requests.Expense;
 
@@ -28,5 +29,5 @@ public sealed class Expense : Entity
     }
 
     public static Expense Create(int categoryId, int userId, string name, double price) => new(categoryId, userId, name, price);
-    public static Expense Create(AddExpenseRequest request) => new(request.CategoryId, request.UserId, request.Name, request.Price);
+    public static Expense Create(AddExpenseDto dto) => new(dto.CategoryId, dto.UserId, dto.Name, dto.Price);
 }

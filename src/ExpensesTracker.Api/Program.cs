@@ -1,3 +1,4 @@
+using ExpensesTracker.Api.Accessors;
 using ExpensesTracker.Api.ExceptionHandler;
 using ExpensesTracker.Api.OptionsSetup;
 using ExpensesTracker.Application;
@@ -13,8 +14,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IUserAccessor, UserAccessor>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 builder.Services.AddAuthorization();
 
 builder.Services

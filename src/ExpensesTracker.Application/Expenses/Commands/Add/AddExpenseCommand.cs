@@ -1,4 +1,5 @@
 ﻿using ExpensesTracker.Application.Base.Commands;
+using ExpensesTracker.Domain.Dtos;
 using ExpensesTracker.Domain.Entities;
 using ExpensesTracker.Domain.Infrastructure.Repositories;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
@@ -7,7 +8,7 @@ using ExpensesTracker.Domain.Results;
 
 namespace ExpensesTracker.Application.Expenses.Commands.Add;
 
-public sealed record AddExpenseCommand(AddExpenseRequest Request) : ICommand;
+public sealed record AddExpenseCommand(AddExpenseDto Request) : ICommand;
 
 public sealed class AddExpenseCommandHandler : ICommandHandler<AddExpenseCommand>
 {
@@ -20,9 +21,9 @@ public sealed class AddExpenseCommandHandler : ICommandHandler<AddExpenseCommand
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(AddExpenseCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AddExpenseCommand command, CancellationToken cancellationToken)
     {
-        var expense = Expense.Create(request.Request);
+        var expense = Expense.Create(command.Request);
 
         await AddToDatabaseAsync(expense);
 
