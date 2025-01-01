@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;
 
-[HasPermission(Permission.Registered)]
 public class CategoryController : ApiController
 {
     public CategoryController(ISender sender) : base(sender)
@@ -19,6 +18,7 @@ public class CategoryController : ApiController
     }
 
     [HttpGet]
+    [HasPermission(Permission.Registered)]
     public async Task<IActionResult> GetAllCategories(CancellationToken cancellationToken)
     {
         var query = new GetAllCategoriesQuery();

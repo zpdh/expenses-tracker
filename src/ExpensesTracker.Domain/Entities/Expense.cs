@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using ExpensesTracker.Domain.Entities.Base;
+using ExpensesTracker.Domain.Requests.Expense;
 
 namespace ExpensesTracker.Domain.Entities;
 
@@ -13,7 +14,7 @@ public sealed class Expense : Entity
     [JsonIgnore] public User User { get; set; }
     [JsonIgnore] public Category Category { get; set; }
 
-    public Expense(int categoryId, int userId, string name, double price)
+    private Expense(int categoryId, int userId, string name, double price)
     {
         CategoryId = categoryId;
         UserId = userId;
@@ -25,4 +26,7 @@ public sealed class Expense : Entity
     {
 
     }
+
+    public static Expense Create(int categoryId, int userId, string name, double price) => new(categoryId, userId, name, price);
+    public static Expense Create(AddExpenseRequest request) => new(request.CategoryId, request.UserId, request.Name, request.Price);
 }
