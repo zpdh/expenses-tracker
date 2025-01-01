@@ -32,6 +32,16 @@ public class CategoryRepository : ICategoryReadRepository, ICategoryWriteReposit
         return GetCategoryByName(name) is null;
     }
 
+    public bool CategoryExists(int id)
+    {
+        const string query = "SELECT COUNT(1) FROM Categories WHERE Id = @id";
+        var parameters = new { Id = id };
+
+        var count = _connection.ExecuteScalar<int>(query, parameters);
+
+        return count > 0;
+    }
+
     private Category? GetCategoryByName(string name)
     {
         const string query = "SELECT * FROM Categories WHERE Name = @name";

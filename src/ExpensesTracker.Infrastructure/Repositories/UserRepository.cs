@@ -62,6 +62,15 @@ public class UserRepository : IUserReadRepository, IUserWriteRepository
         return user is null;
     }
 
+    public bool UserExists(int id)
+    {
+        const string query = "SELECT COUNT(1) FROM Users WHERE Id = @id";
+        var parameters = new { Id = id };
+
+        var count = _connection.ExecuteScalar<int>(query, parameters);
+        return count > 0;
+    }
+
     public async Task AddAsync(User user)
     {
         await _context.Users.AddAsync(user);

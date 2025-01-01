@@ -1,6 +1,7 @@
 ﻿using ExpensesTracker.Domain.Infrastructure.Hasher;
 using ExpensesTracker.Domain.Infrastructure.Repositories;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
+using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Domain.Infrastructure.Tokens;
 using ExpensesTracker.Infrastructure.Authentication;
@@ -52,8 +53,8 @@ public static class Dependencies
         services.AddScoped<ICategoryReadRepository, CategoryRepository>();
         services.AddScoped<ICategoryWriteRepository, CategoryRepository>();
 
-        services.AddScoped<ExpenseRepository>();
-        services.AddScoped<ExpenseRepository>();
+        services.AddScoped<IExpenseReadRepository, ExpenseRepository>();
+        services.AddScoped<IExpenseWriteRepository, ExpenseRepository>();
     }
 
     private static void AddAuthenticationServices(this IServiceCollection services)

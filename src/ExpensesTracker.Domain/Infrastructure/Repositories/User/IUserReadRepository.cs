@@ -8,4 +8,5 @@ public interface IUserReadRepository
 
     bool IsEmailUnique(string email);
     Task<bool> IsEmailUniqueAsync(string email);
+    bool UserExists(int id);
 }
