@@ -1,6 +1,4 @@
-﻿using ExpensesTracker.Domain.Entities.Base;
-
-namespace ExpensesTracker.Domain.Entities;
+﻿namespace ExpensesTracker.Domain.Entities;
 
 public class Permission
 {

@@ -4,7 +4,6 @@ using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Requests.User;
 using FluentAssertions;
 using TestUtils.Hasher;
-using TestUtils.Repositories;
 using TestUtils.Repositories.User;
 using TestUtils.Tokens;
 
@@ -30,7 +29,7 @@ public class LoginUserCommandTests
     {
         var request = new LoginUserRequest("email@gmail.com", "Password");
         var command = new LoginUserCommand(request);
-        var handler = CreateHandler(password: request.Password, email: request.Email);
+        var handler = CreateHandler(request.Password, request.Email);
 
         var result = await handler.Handle(command, default);
 

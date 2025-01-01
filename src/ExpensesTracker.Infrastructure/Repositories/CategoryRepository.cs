@@ -9,8 +9,8 @@ namespace ExpensesTracker.Infrastructure.Repositories;
 
 public class CategoryRepository : ICategoryReadRepository, ICategoryWriteRepository
 {
-    private readonly DataContext _context;
     private readonly IDbConnection _connection;
+    private readonly DataContext _context;
 
     public CategoryRepository(DataContext context)
     {
@@ -42,6 +42,11 @@ public class CategoryRepository : ICategoryReadRepository, ICategoryWriteReposit
         return count > 0;
     }
 
+    public async Task AddCategoryAsync(Category category)
+    {
+        await _context.Categories.AddAsync(category);
+    }
+
     private Category? GetCategoryByName(string name)
     {
         const string query = "SELECT * FROM Categories WHERE Name = @name";
@@ -50,10 +55,5 @@ public class CategoryRepository : ICategoryReadRepository, ICategoryWriteReposit
         var category = _connection.QueryFirstOrDefault<Category>(query, parameters);
 
         return category;
-    }
-
-    public async Task AddCategoryAsync(Category category)
-    {
-        await _context.Categories.AddAsync(category);
     }
 }

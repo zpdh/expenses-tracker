@@ -8,16 +8,16 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ExpensesTracker.Application\ExpensesTracker.Application.csproj" />
-      <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj" />
-      <ProjectReference Include="..\ExpensesTracker.Infrastructure\ExpensesTracker.Infrastructure.csproj" />
+        <ProjectReference Include="..\ExpensesTracker.Application\ExpensesTracker.Application.csproj"/>
+        <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj"/>
+        <ProjectReference Include="..\ExpensesTracker.Infrastructure\ExpensesTracker.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

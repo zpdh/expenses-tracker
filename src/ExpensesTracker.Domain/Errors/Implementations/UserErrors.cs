@@ -11,5 +11,9 @@ public sealed record UserErrors
     public static Error PasswordLength => new("The provided password must be between 6 to 32 characters.");
     public static Error EmailAlreadyRegistered => new("A user with the provided email is already registered.");
     public static Error InvalidCredentials => new("The provided email or password are incorrect. Try again.");
-    public static Error UserNotFound(int id) => new($"User with the id = {id} was not found.");
+
+    public static Error UserNotFound(int id)
+    {
+        return new Error($"User with the id = {id} was not found.");
+    }
 }

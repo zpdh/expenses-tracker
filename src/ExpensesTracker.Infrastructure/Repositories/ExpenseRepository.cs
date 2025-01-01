@@ -8,8 +8,8 @@ namespace ExpensesTracker.Infrastructure.Repositories;
 
 public class ExpenseRepository : IExpenseReadRepository, IExpenseWriteRepository
 {
-    private readonly DataContext _context;
     private readonly IDbConnection _connection;
+    private readonly DataContext _context;
 
     public ExpenseRepository(DataContext context)
     {

@@ -4,7 +4,7 @@ namespace ExpensesTracker.Domain.Entities.Base;
 
 public abstract class Entity : IEquatable<Entity>
 {
-    public int Id { get; private init; }
+    public int Id { get; }
 
     protected Entity(int id)
     {
@@ -16,16 +16,6 @@ public abstract class Entity : IEquatable<Entity>
 
     }
 
-    public static bool operator ==(Entity? first, Entity? second)
-    {
-        return first is not null && second is not null && first.Equals(second);
-    }
-
-    public static bool operator !=(Entity? first, Entity? second)
-    {
-        return !(first == second);
-    }
-
     public virtual bool Equals(Entity? other)
     {
         if (IsNullOrDifferentType(other))
@@ -34,6 +24,16 @@ public abstract class Entity : IEquatable<Entity>
         }
 
         return Id == other.Id;
+    }
+
+    public static bool operator ==(Entity? first, Entity? second)
+    {
+        return first is not null && second is not null && first.Equals(second);
+    }
+
+    public static bool operator !=(Entity? first, Entity? second)
+    {
+        return !(first == second);
     }
 
     public override bool Equals(object? obj)

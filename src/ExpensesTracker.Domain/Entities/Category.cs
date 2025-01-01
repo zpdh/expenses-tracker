@@ -18,5 +18,8 @@ public sealed class Category : Entity
 
     }
 
-    public static Category Create(string name) => new(name);
+    public static Category Create(string name)
+    {
+        return new Category(name);
+    }
 }

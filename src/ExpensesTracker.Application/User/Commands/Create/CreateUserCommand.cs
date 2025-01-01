@@ -12,9 +12,9 @@ public sealed record CreateUserCommand(CreateUserRequest Request) : ICommand;
 
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
 {
-    private readonly IUserWriteRepository _writeRepository;
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IHasherService _hasherService;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserWriteRepository _writeRepository;
 
     public CreateUserCommandHandler(IUserWriteRepository writeRepository, IUnitOfWork unitOfWork, IHasherService hasherService)
     {

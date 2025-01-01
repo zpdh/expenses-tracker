@@ -4,18 +4,15 @@ using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using ExpensesTracker.Domain.Infrastructure.Tokens;
-using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Authentication.Jwt;
 using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using ExpensesTracker.Infrastructure.Data;
 using ExpensesTracker.Infrastructure.Hasher;
 using ExpensesTracker.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ExpensesTracker.Infrastructure;
 

@@ -9,8 +9,8 @@ namespace ExpensesTracker.Infrastructure.Repositories;
 
 public class UserRepository : IUserReadRepository, IUserWriteRepository
 {
-    private readonly DataContext _context;
     private readonly IDbConnection _connection;
+    private readonly DataContext _context;
 
     public UserRepository(DataContext context)
     {

@@ -1,5 +1,4 @@
-﻿using ExpensesTracker.Infrastructure.Authentication;
-using ExpensesTracker.Infrastructure.Authentication.Jwt;
+﻿using ExpensesTracker.Infrastructure.Authentication.Jwt;
 using Microsoft.Extensions.Options;
 
 namespace ExpensesTracker.Api.OptionsSetup;

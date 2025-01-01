@@ -13,9 +13,9 @@ public sealed record LoginUserCommand(LoginUserRequest Request) : ICommand<Token
 
 public sealed class LoginUserCommandHandler : ICommandHandler<LoginUserCommand, TokenResponse>
 {
-    private readonly IUserReadRepository _userReadRepository;
-    private readonly IJwtGenerator _jwtGenerator;
     private readonly IHasherService _hasherService;
+    private readonly IJwtGenerator _jwtGenerator;
+    private readonly IUserReadRepository _userReadRepository;
 
     public LoginUserCommandHandler(IUserReadRepository userReadRepository, IJwtGenerator jwtGenerator, IHasherService hasherService)
     {

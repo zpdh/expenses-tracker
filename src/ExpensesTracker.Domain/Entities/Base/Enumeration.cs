@@ -20,6 +20,16 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
 
     }
 
+    public bool Equals(Enumeration<TEnum>? other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        return GetType() == other.GetType() && Id == other.Id;
+    }
+
     public static TEnum? FromValue(int value)
     {
         return GetEnumerations.GetValueOrDefault(value);
@@ -45,16 +55,6 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
             .Select(fieldInfo => (TEnum)fieldInfo.GetValue(default)!);
 
         return fields.ToDictionary(type => type.Id);
-    }
-
-    public bool Equals(Enumeration<TEnum>? other)
-    {
-        if (other is null)
-        {
-            return false;
-        }
-
-        return GetType() == other.GetType() && Id == other.Id;
     }
 
     public override bool Equals(object? obj)

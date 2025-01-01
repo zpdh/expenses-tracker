@@ -1,5 +1,4 @@
-﻿using ExpensesTracker.Domain.Errors;
-using ExpensesTracker.Domain.Errors.Base;
+﻿using ExpensesTracker.Domain.Errors.Base;
 
 namespace ExpensesTracker.Domain.Results;
 
@@ -22,12 +21,35 @@ public class Result
         IsSuccess = false;
     }
 
-    public static Result Success() => new(Error.None);
-    public static Result<TValue> Success<TValue>(TValue value) => new(value, Error.None);
-    public static Result Failure(Error error) => new(error);
-    public static Result<TValue> Failure<TValue>(Error error) => new(default, error);
-    public static Result Create(bool condition) => condition ? Success() : Failure(Error.ConditionNotMet);
-    public static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure<TValue>(Error.NullArgument);
+    public static Result Success()
+    {
+        return new Result(Error.None);
+    }
+
+    public static Result<TValue> Success<TValue>(TValue value)
+    {
+        return new Result<TValue>(value, Error.None);
+    }
+
+    public static Result Failure(Error error)
+    {
+        return new Result(error);
+    }
+
+    public static Result<TValue> Failure<TValue>(Error error)
+    {
+        return new Result<TValue>(default, error);
+    }
+
+    public static Result Create(bool condition)
+    {
+        return condition ? Success() : Failure(Error.ConditionNotMet);
+    }
+
+    public static Result<TValue> Create<TValue>(TValue value)
+    {
+        return value is not null ? Success(value) : Failure<TValue>(Error.NullArgument);
+    }
 }
 
 public class Result<TValue> : Result
@@ -39,5 +61,9 @@ public class Result<TValue> : Result
     {
         _value = value;
     }
-    public static implicit operator Result<TValue>(TValue value) => Create(value);
+
+    public static implicit operator Result<TValue>(TValue value)
+    {
+        return Create(value);
+    }
 }

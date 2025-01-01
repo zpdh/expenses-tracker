@@ -3,7 +3,6 @@ using ExpensesTracker.Domain.Dtos;
 using ExpensesTracker.Domain.Entities;
 using ExpensesTracker.Domain.Infrastructure.Repositories;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
-using ExpensesTracker.Domain.Requests.Expense;
 using ExpensesTracker.Domain.Results;
 
 namespace ExpensesTracker.Application.Expenses.Commands.Add;
@@ -12,8 +11,8 @@ public sealed record AddExpenseCommand(AddExpenseDto Request) : ICommand;
 
 public sealed class AddExpenseCommandHandler : ICommandHandler<AddExpenseCommand>
 {
-    private readonly IExpenseWriteRepository _writeRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IExpenseWriteRepository _writeRepository;
 
     public AddExpenseCommandHandler(IExpenseWriteRepository writeRepository, IUnitOfWork unitOfWork)
     {

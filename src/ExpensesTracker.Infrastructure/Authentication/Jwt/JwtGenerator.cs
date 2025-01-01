@@ -37,8 +37,8 @@ public sealed class JwtGenerator : IJwtGenerator
     {
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(JwtRegisteredClaimNames.Email, user.Email)
         };
 
         claims.AddRange(permissions.Select(permission => new Claim(CustomClaims.Permissions, permission)));

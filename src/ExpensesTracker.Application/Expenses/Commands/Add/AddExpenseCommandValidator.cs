@@ -1,7 +1,6 @@
 ﻿using ExpensesTracker.Application.Extensions;
 using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
-using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using FluentValidation;
 

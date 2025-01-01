@@ -3,10 +3,8 @@ using ExpensesTracker.Application.Category.Commands;
 using ExpensesTracker.Application.Category.Queries;
 using ExpensesTracker.Domain.Enums;
 using ExpensesTracker.Domain.Requests.Category;
-using ExpensesTracker.Domain.Results;
 using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;

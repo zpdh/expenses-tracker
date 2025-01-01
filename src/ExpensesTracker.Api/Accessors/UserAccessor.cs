@@ -1,8 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using ExpensesTracker.Domain.Errors.Base;
-using ExpensesTracker.Domain.Results;
-using Microsoft.IdentityModel.Tokens;
+﻿using System.Security.Claims;
 
 namespace ExpensesTracker.Api.Accessors;
 

@@ -17,5 +17,8 @@ public class PermissionRole
 
     }
 
-    public static PermissionRole Create(Role role, Enums.Permission permission) => new(role, permission);
+    public static PermissionRole Create(Role role, Enums.Permission permission)
+    {
+        return new PermissionRole(role, permission);
+    }
 }

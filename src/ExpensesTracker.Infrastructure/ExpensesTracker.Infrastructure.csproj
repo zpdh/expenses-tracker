@@ -7,27 +7,27 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj" />
+        <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-      <PackageReference Include="Dapper" Version="2.1.35" />
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.11" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
+        <PackageReference Include="Dapper" Version="2.1.35"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.11"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
+        <Folder Include="Migrations\"/>
     </ItemGroup>
 
 </Project>

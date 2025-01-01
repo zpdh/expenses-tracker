@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using ExpensesTracker.Infrastructure.Authentication;
 using ExpensesTracker.Infrastructure.Authentication.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -31,5 +30,8 @@ public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
         };
     }
 
-    public void Configure(string? name, JwtBearerOptions options) => Configure(options);
+    public void Configure(string? name, JwtBearerOptions options)
+    {
+        Configure(options);
+    }
 }

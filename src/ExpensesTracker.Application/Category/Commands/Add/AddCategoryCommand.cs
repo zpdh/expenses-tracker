@@ -10,8 +10,8 @@ public sealed record AddCategoryCommand(AddCategoryRequest Request) : ICommand;
 
 public sealed class AddCategoryCommandHandler : ICommandHandler<AddCategoryCommand>
 {
-    private readonly ICategoryWriteRepository _writeRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ICategoryWriteRepository _writeRepository;
 
     public AddCategoryCommandHandler(ICategoryWriteRepository writeRepository, IUnitOfWork unitOfWork)
     {

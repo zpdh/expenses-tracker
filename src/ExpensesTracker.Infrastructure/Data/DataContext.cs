@@ -1,5 +1,4 @@
 ﻿using ExpensesTracker.Domain.Entities;
-using ExpensesTracker.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Permission = ExpensesTracker.Domain.Enums.Permission;
 
@@ -11,7 +10,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public DbSet<Category> Categories { get; set; }
     public DbSet<Expense> Expenses { get; set; }
     public DbSet<Role> Roles { get; set; }
-    public DbSet<ExpensesTracker.Domain.Entities.Permission> Permissions { get; set; }
+    public DbSet<Domain.Entities.Permission> Permissions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,7 +39,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
             .HasData(Role.GetValues());
 
         var permissions = Enum.GetValues<Permission>()
-            .Select(perm => new ExpensesTracker.Domain.Entities.Permission
+            .Select(perm => new Domain.Entities.Permission
             {
                 Id = (int)perm,
                 Name = perm.ToString()
@@ -53,7 +52,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
             .HasData(PermissionRole.Create(Role.Registered, Permission.Registered),
                 PermissionRole.Create(Role.Administrator, Permission.Administrator));
 
-        modelBuilder.Entity<ExpensesTracker.Domain.Entities.Permission>()
+        modelBuilder.Entity<Domain.Entities.Permission>()
             .HasData(permissions);
     }
 }

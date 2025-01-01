@@ -1,9 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
-using ExpensesTracker.Infrastructure.Authentication.Jwt;
+﻿using ExpensesTracker.Infrastructure.Authentication.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace ExpensesTracker.Infrastructure.Authentication.Permissions;
 

@@ -1,5 +1,4 @@
 ﻿using ExpensesTracker.Api.Controllers.Base;
-using ExpensesTracker.Application.User.Commands;
 using ExpensesTracker.Application.User.Commands.Create;
 using ExpensesTracker.Application.User.Commands.Login;
 using ExpensesTracker.Application.User.Queries;
@@ -7,7 +6,6 @@ using ExpensesTracker.Domain.Enums;
 using ExpensesTracker.Domain.Requests.User;
 using ExpensesTracker.Infrastructure.Authentication.Permissions;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;

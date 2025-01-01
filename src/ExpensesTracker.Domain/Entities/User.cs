@@ -22,5 +22,8 @@ public sealed class User : Entity
     {
     }
 
-    public static User Create(string name, string email, string password) => new(name, email, password);
+    public static User Create(string name, string email, string password)
+    {
+        return new User(name, email, password);
+    }
 }
