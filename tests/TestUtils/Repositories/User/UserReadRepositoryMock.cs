@@ -1,8 +1,7 @@
-﻿using ExpensesTracker.Domain.Entities;
-using ExpensesTracker.Domain.Infrastructure.Repositories.User;
+﻿using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using Moq;
 
-namespace TestUtils.Repositories;
+namespace TestUtils.Repositories.User;
 
 public sealed class UserReadRepositoryMock
 {
@@ -14,13 +13,13 @@ public sealed class UserReadRepositoryMock
         mock.Setup(moq => moq.IsEmailUniqueAsync(It.IsAny<string>())).ReturnsAsync(true);
     }
 
-    public static void SetupGetUserByEmail(Mock<IUserReadRepository> mock, User user)
+    public static void SetupGetUserByEmail(Mock<IUserReadRepository> mock, ExpensesTracker.Domain.Entities.User user)
     {
         mock.Setup(moq => moq.GetUserByEmail(user.Email)).Returns(user);
         mock.Setup(moq => moq.GetUserByEmailAsync(user.Email)).ReturnsAsync(user);
     }
 
-    public static void SetupGetUserById(Mock<IUserReadRepository> mock, int id, User user)
+    public static void SetupGetUserById(Mock<IUserReadRepository> mock, int id, ExpensesTracker.Domain.Entities.User user)
     {
         mock.Setup(moq => moq.GetByIdAsync(id)).ReturnsAsync(user);
     }

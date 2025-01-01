@@ -3,7 +3,7 @@ using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Category;
 using FluentValidation;
 
-namespace ExpensesTracker.Application.Category.Commands;
+namespace ExpensesTracker.Application.Category.Commands.Add;
 
 public class AddCategoryCommandValidator : AbstractValidator<AddCategoryCommand>
 {

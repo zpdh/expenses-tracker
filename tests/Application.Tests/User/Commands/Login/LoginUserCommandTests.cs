@@ -5,6 +5,7 @@ using ExpensesTracker.Domain.Requests.User;
 using FluentAssertions;
 using TestUtils.Hasher;
 using TestUtils.Repositories;
+using TestUtils.Repositories.User;
 using TestUtils.Tokens;
 
 namespace Application.Tests.User.Commands.Login;

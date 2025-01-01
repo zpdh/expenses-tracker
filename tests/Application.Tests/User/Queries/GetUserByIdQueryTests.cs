@@ -3,6 +3,7 @@ using ExpensesTracker.Domain.Errors.Base;
 using ExpensesTracker.Domain.Errors.Implementations;
 using FluentAssertions;
 using TestUtils.Repositories;
+using TestUtils.Repositories.User;
 
 namespace Application.Tests.User.Queries;
 

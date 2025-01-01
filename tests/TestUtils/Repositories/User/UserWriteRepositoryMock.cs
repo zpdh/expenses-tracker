@@ -1,7 +1,7 @@
 ﻿using ExpensesTracker.Domain.Infrastructure.Repositories.User;
 using Moq;
 
-namespace TestUtils.Repositories;
+namespace TestUtils.Repositories.User;
 
 public sealed class UserWriteRepositoryMock
 {

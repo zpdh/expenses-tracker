@@ -4,6 +4,7 @@ using ExpensesTracker.Domain.Errors.Implementations;
 using ExpensesTracker.Domain.Requests.User;
 using FluentAssertions;
 using TestUtils.Repositories;
+using TestUtils.Repositories.User;
 
 namespace Application.Tests.User.Commands.Create;
 
