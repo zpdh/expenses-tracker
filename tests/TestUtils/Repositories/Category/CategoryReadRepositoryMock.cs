@@ -11,4 +11,9 @@ public class CategoryReadRepositoryMock
     {
         mock.Setup(moq => moq.CategoryWithNameDoesNotExist(name)).Returns(true);
     }
+
+    public static void SetupGetAllCategoriesAsync(Mock<ICategoryReadRepository> mock, List<ExpensesTracker.Domain.Entities.Category> categories)
+    {
+        mock.Setup(moq => moq.GetAllCategoriesAsync()).ReturnsAsync(categories);
+    }
 }
