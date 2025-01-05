@@ -12,8 +12,10 @@ public sealed record UserErrors
     public static Error EmailAlreadyRegistered => new("A user with the provided email is already registered.");
     public static Error InvalidCredentials => new("The provided email or password are incorrect. Try again.");
 
-    public static Error UserNotFound(int id)
+    public static Error UserNotFound(int id = 0)
     {
-        return new Error($"User with the id = {id} was not found.");
+        return id == 0
+            ? new Error("User with the provided id was not found.")
+            : new Error($"User with the id = {id} was not found.");
     }
 }
