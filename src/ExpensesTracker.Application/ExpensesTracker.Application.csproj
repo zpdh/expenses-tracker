@@ -18,4 +18,11 @@
         <ProjectReference Include="..\ExpensesTracker.Domain\ExpensesTracker.Domain.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Category\Commands\Delete\" />
+      <Folder Include="Category\Commands\Update\" />
+      <Folder Include="Expenses\Delete\" />
+      <Folder Include="Expenses\Update\" />
+    </ItemGroup>
+
 </Project>

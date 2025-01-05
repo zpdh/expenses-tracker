@@ -25,7 +25,6 @@ public class ExpensesController : ApiController
     public async Task<IActionResult> AddExpense([FromBody] AddExpenseRequest request, CancellationToken cancellationToken)
     {
         var userId = _userAccessor.GetRequestingUserId();
-
         var dto = new AddExpenseDto(request.CategoryId, userId, request.Name, request.Price);
         var command = new AddExpenseCommand(dto);
 

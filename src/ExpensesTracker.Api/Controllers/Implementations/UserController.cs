@@ -1,5 +1,7 @@
-﻿using ExpensesTracker.Api.Controllers.Base;
+﻿using ExpensesTracker.Api.Accessors;
+using ExpensesTracker.Api.Controllers.Base;
 using ExpensesTracker.Application.User.Commands.Create;
+using ExpensesTracker.Application.User.Commands.Delete;
 using ExpensesTracker.Application.User.Commands.Login;
 using ExpensesTracker.Application.User.Queries;
 using ExpensesTracker.Domain.Enums;
@@ -10,8 +12,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesTracker.Api.Controllers.Implementations;
 
-public class UserController(ISender sender) : ApiController(sender)
+public class UserController : ApiController
 {
+    private readonly IUserAccessor _userAccessor;
+
+    public UserController(ISender sender, IUserAccessor userAccessor) : base(sender)
+    {
+        _userAccessor = userAccessor;
+    }
+
     [HttpGet]
     [HasPermission(Permission.Registered)]
     public async Task<IActionResult> GetUserById(int id, CancellationToken cancellationToken)
@@ -42,5 +51,18 @@ public class UserController(ISender sender) : ApiController(sender)
         var result = await Sender.Send(command, cancellationToken);
 
         return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
+    }
+
+    [HttpDelete]
+    [HasPermission(Permission.Registered)]
+    public async Task<IActionResult> DeleteUser(CancellationToken cancellationToken)
+    {
+        var userId = _userAccessor.GetRequestingUserId();
+        var request = new DeleteUserRequest(userId);
+        var command = new DeleteUserCommand(request);
+
+        var result = await Sender.Send(command, cancellationToken);
+
+        return result.IsSuccess ? NoContent() : HandleFailure(result);
     }
 }
