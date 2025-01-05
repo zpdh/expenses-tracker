@@ -1,6 +1,7 @@
 ﻿using ExpensesTracker.Api.Accessors;
 using ExpensesTracker.Api.Controllers.Base;
 using ExpensesTracker.Application.Expenses.Commands.Add;
+using ExpensesTracker.Application.Expenses.Queries;
 using ExpensesTracker.Domain.Dtos;
 using ExpensesTracker.Domain.Enums;
 using ExpensesTracker.Domain.Requests.Expense;
@@ -20,8 +21,19 @@ public class ExpensesController : ApiController
         _userAccessor = userAccessor;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetExpenses(CancellationToken cancellationToken)
+    {
+        var userId = _userAccessor.GetRequestingUserId();
+        var request = new GetExpensesRequest(userId);
+        var query = new GetExpensesQuery(request);
+
+        var result = await Sender.Send(query, cancellationToken);
+
+        return Ok(result.Value.Expenses);
+    }
+
     [HttpPost]
-    [HasPermission(Permission.Registered)]
     public async Task<IActionResult> AddExpense([FromBody] AddExpenseRequest request, CancellationToken cancellationToken)
     {
         var userId = _userAccessor.GetRequestingUserId();

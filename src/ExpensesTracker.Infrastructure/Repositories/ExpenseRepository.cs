@@ -13,7 +13,7 @@ public class ExpenseRepository : IExpenseReadRepository, IExpenseWriteRepository
     private readonly DataContext _context;
 
 
-    public async Task<List<Expense>> GetExpensesByUserId(int userId)
+    public async Task<List<Expense>> GetExpensesByUserIdAsync(int userId)
     {
         const string query = "SELECT * FROM Expenses WHERE UserId = @userId";
         var parameters = new { UserId = userId };
