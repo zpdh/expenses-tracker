@@ -4,7 +4,7 @@ namespace ExpensesTracker.Domain.Entities.Base;
 
 public abstract class Entity : IEquatable<Entity>
 {
-    public int Id { get; }
+    public int Id { get; private init; }
 
     protected Entity(int id)
     {
