@@ -23,11 +23,12 @@ public class UserController : ApiController
 
     [HttpGet]
     [HasPermission(Permission.Registered)]
-    public async Task<IActionResult> GetUserById(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUser(CancellationToken cancellationToken)
     {
-        var command = new GetUserByIdQuery(id);
+        var userId = _userAccessor.GetRequestingUserId();
+        var query = new GetUserByIdQuery(userId);
 
-        var result = await Sender.Send(command, cancellationToken);
+        var result = await Sender.Send(query, cancellationToken);
 
         return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
     }
