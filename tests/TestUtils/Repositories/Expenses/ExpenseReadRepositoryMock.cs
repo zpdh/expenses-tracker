@@ -12,4 +12,9 @@ public static class ExpenseReadRepositoryMock
     {
         mock.Setup(moq => moq.GetExpensesByUserIdAsync(userId)).ReturnsAsync(expenses);
     }
+
+    public static void SetupExpenseExists(Mock<IExpenseReadRepository> mock, int userId, int categoryId)
+    {
+        mock.Setup(moq => moq.ExpenseExists(userId, categoryId)).Returns(true);
+    }
 }
