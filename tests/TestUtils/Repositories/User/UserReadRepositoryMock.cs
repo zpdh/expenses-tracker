@@ -23,4 +23,9 @@ public sealed class UserReadRepositoryMock
     {
         mock.Setup(moq => moq.GetByIdAsync(id)).ReturnsAsync(user);
     }
+
+    public static void SetupUserExists(Mock<IUserReadRepository> mock, int id)
+    {
+        mock.Setup(moq => moq.UserExists(id)).Returns(true);
+    }
 }

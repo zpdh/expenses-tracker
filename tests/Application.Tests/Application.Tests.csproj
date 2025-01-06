@@ -27,8 +27,4 @@
         <ProjectReference Include="..\TestUtils\TestUtils.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Expenses\" />
-    </ItemGroup>
-
 </Project>
