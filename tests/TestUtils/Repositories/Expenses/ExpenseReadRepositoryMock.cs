@@ -4,7 +4,7 @@ using Moq;
 
 namespace TestUtils.Repositories.Expenses;
 
-public class ExpensesReadRepositoryMock
+public static class ExpenseReadRepositoryMock
 {
     public static Mock<IExpenseReadRepository> Create => new();
 

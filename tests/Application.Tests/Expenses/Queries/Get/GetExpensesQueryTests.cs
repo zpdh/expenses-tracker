@@ -4,7 +4,7 @@ using ExpensesTracker.Domain.Requests.Expense;
 using FluentAssertions;
 using TestUtils.Repositories.Expenses;
 
-namespace Application.Tests.Expenses.Queries;
+namespace Application.Tests.Expenses.Queries.Get;
 
 public class GetCategoriesQueryTests
 {
@@ -32,11 +32,11 @@ public class GetCategoriesQueryTests
 
     private GetExpensesQueryHandler CreateHandler(int? userId = null)
     {
-        var readRepository = ExpensesReadRepositoryMock.Create;
+        var readRepository = ExpenseReadRepositoryMock.Create;
 
         if (userId is not null)
         {
-            ExpensesReadRepositoryMock.SetupGetExpensesByUseridAsync(readRepository, _expenses, (int)userId);
+            ExpenseReadRepositoryMock.SetupGetExpensesByUseridAsync(readRepository, _expenses, (int)userId);
         }
 
         return new GetExpensesQueryHandler(readRepository.Object);

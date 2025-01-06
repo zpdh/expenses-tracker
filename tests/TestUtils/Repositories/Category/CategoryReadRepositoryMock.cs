@@ -16,4 +16,9 @@ public class CategoryReadRepositoryMock
     {
         mock.Setup(moq => moq.GetAllCategoriesAsync()).ReturnsAsync(categories);
     }
+
+    public static void SetupCategoryExists(Mock<ICategoryReadRepository> mock, int id)
+    {
+        mock.Setup(moq => moq.CategoryExists(id)).Returns(true);
+    }
 }
