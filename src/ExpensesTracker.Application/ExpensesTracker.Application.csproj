@@ -21,7 +21,6 @@
     <ItemGroup>
       <Folder Include="Category\Commands\Delete\" />
       <Folder Include="Category\Commands\Update\" />
-      <Folder Include="Expenses\Commands\Delete\" />
       <Folder Include="Expenses\Commands\Update\" />
     </ItemGroup>
 

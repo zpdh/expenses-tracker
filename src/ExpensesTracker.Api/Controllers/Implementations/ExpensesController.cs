@@ -1,6 +1,7 @@
 ﻿using ExpensesTracker.Api.Accessors;
 using ExpensesTracker.Api.Controllers.Base;
 using ExpensesTracker.Application.Expenses.Commands.Add;
+using ExpensesTracker.Application.Expenses.Commands.Delete;
 using ExpensesTracker.Application.Expenses.Queries;
 using ExpensesTracker.Domain.Dtos;
 using ExpensesTracker.Domain.Enums;
@@ -43,5 +44,17 @@ public class ExpensesController : ApiController
         var result = await Sender.Send(command, cancellationToken);
 
         return result.IsSuccess ? Created() : HandleFailure(result);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteExpense([FromBody] DeleteExpenseRequest request, CancellationToken cancellationToken)
+    {
+        var userId = _userAccessor.GetRequestingUserId();
+        var dto = new DeleteExpenseDto(userId, request.ExpenseId);
+        var command = new DeleteExpenseCommand(dto);
+
+        var result = await Sender.Send(command, cancellationToken);
+
+        return result.IsSuccess ? NoContent() : HandleFailure(result);
     }
 }
