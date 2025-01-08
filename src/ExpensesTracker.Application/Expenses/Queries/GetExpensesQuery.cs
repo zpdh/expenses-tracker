@@ -6,7 +6,7 @@ using ExpensesTracker.Domain.Results;
 
 namespace ExpensesTracker.Application.Expenses.Queries;
 
-public sealed record GetExpensesQuery(GetExpensesRequest Request) : IQuery<GetExpensesResponse>;
+public sealed record GetExpensesQuery(GetExpensesDto Dto) : IQuery<GetExpensesResponse>;
 
 public sealed class GetExpensesQueryHandler : IQueryHandler<GetExpensesQuery, GetExpensesResponse>
 {
@@ -19,7 +19,7 @@ public sealed class GetExpensesQueryHandler : IQueryHandler<GetExpensesQuery, Ge
 
     public async Task<Result<GetExpensesResponse>> Handle(GetExpensesQuery query, CancellationToken cancellationToken)
     {
-        var expenses = await _readRepository.GetExpensesByUserIdAsync(query.Request.UserId);
+        var expenses = await _readRepository.GetExpensesByUserIdAsync(query.Dto.UserId, query.Dto.Filter);
 
         var response = new GetExpensesResponse(expenses);
 

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Dapper;
 using ExpensesTracker.Domain.Entities;
+using ExpensesTracker.Domain.Extensions;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 using ExpensesTracker.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,17 @@ public class ExpenseRepository : IExpenseReadRepository, IExpenseWriteRepository
     private readonly DataContext _context;
 
 
-    public async Task<List<Expense>> GetExpensesByUserIdAsync(int userId)
+    public async Task<List<Expense>> GetExpensesByUserIdAsync(int userId, string filter)
     {
-        const string query = "SELECT * FROM Expenses WHERE UserId = @userId";
-        var parameters = new { UserId = userId };
+        var query = "SELECT * FROM Expenses WHERE UserId = @userId";
+        var parameters = new DynamicParameters();
+        parameters.Add("UserId", userId);
+
+        if (!filter.IsNullOrWhitespace())
+        {
+            query += " AND Name LIKE @filter";
+            parameters.Add("Filter", $"%{filter}%");
+        }
 
         var expenses = await _connection.QueryAsync<Expense>(query, parameters);
 

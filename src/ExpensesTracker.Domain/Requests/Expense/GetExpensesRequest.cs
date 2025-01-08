@@ -1,3 +1,3 @@
 ﻿namespace ExpensesTracker.Domain.Requests.Expense;
 
-public sealed record GetExpensesRequest(int UserId);
+public sealed record GetExpensesRequest(string Filter = "");

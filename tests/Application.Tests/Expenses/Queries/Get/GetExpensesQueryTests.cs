@@ -20,7 +20,7 @@ public class GetCategoriesQueryTests
     [Fact]
     public async Task Handler_Should_ReturnSuccess()
     {
-        var request = new GetExpensesRequest(UserId);
+        var request = new GetExpensesDto(UserId, "");
         var query = new GetExpensesQuery(request);
         var handler = CreateHandler(UserId);
 

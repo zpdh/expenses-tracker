@@ -23,11 +23,11 @@ public class ExpensesController : ApiController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetExpenses(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetExpenses([FromBody] GetExpensesRequest request, CancellationToken cancellationToken)
     {
         var userId = _userAccessor.GetRequestingUserId();
-        var request = new GetExpensesRequest(userId);
-        var query = new GetExpensesQuery(request);
+        var dto = new GetExpensesDto(userId, request.Filter);
+        var query = new GetExpensesQuery(dto);
 
         var result = await Sender.Send(query, cancellationToken);
 

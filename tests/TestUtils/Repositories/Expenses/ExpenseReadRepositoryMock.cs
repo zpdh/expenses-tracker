@@ -10,7 +10,7 @@ public static class ExpenseReadRepositoryMock
 
     public static void SetupGetExpensesByUseridAsync(Mock<IExpenseReadRepository> mock, List<Expense> expenses, int userId)
     {
-        mock.Setup(moq => moq.GetExpensesByUserIdAsync(userId)).ReturnsAsync(expenses);
+        mock.Setup(moq => moq.GetExpensesByUserIdAsync(userId, "")).ReturnsAsync(expenses);
     }
 
     public static void SetupExpenseExists(Mock<IExpenseReadRepository> mock, int userId, int categoryId)
