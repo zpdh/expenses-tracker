@@ -15,7 +15,8 @@ public static class ExpenseReadRepositoryMock
         GetExpensesDto dto)
     {
         mock.Setup(moq => moq.GetExpensesByUserIdAsync(dto))
-            .ReturnsAsync(expenses.Where(expense => expense.Name.Contains(dto.Filter, StringComparison.CurrentCultureIgnoreCase)).ToList);
+            .ReturnsAsync(expenses.Where(expense =>
+                expense.Name.Contains(dto.Filter, StringComparison.CurrentCultureIgnoreCase) && expense.InsertionDate >= dto.Since).ToList);
     }
 
     public static void SetupExpenseExists(Mock<IExpenseReadRepository> mock, int userId, int categoryId)

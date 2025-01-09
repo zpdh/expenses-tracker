@@ -21,7 +21,7 @@ public class GetCategoriesQueryTests
     [Fact]
     public async Task Handler_Should_ReturnSuccess_With_All_Expenses()
     {
-        var request = new GetExpensesDto(UserId, "", DateTime.UtcNow);
+        var request = new GetExpensesDto(UserId, "", DateTime.UtcNow.AddDays(-7));
         var query = new GetExpensesQuery(request);
         var handler = CreateHandler(request);
 
@@ -34,7 +34,7 @@ public class GetCategoriesQueryTests
     [Fact]
     public async Task Handler_Should_ReturnSuccess_With_Expenses_That_Contain_A()
     {
-        var request = new GetExpensesDto(UserId, "a", DateTime.UtcNow);
+        var request = new GetExpensesDto(UserId, "a", DateTime.UtcNow.AddDays(-7));
         var query = new GetExpensesQuery(request);
         var handler = CreateHandler(request);
 
@@ -47,7 +47,7 @@ public class GetCategoriesQueryTests
     [Fact]
     public async Task Handler_Should_ReturnSuccess_With_Expenses_That_Contain_Different_Cases()
     {
-        var request = new GetExpensesDto(UserId, "TELEVISION", DateTime.UtcNow);
+        var request = new GetExpensesDto(UserId, "TELEVISION", DateTime.UtcNow.AddDays(-7));
         var query = new GetExpensesQuery(request);
         var handler = CreateHandler(request);
 
@@ -55,6 +55,19 @@ public class GetCategoriesQueryTests
 
         result.IsSuccess.Should().BeTrue();
         result.Value.Expenses.Should().Contain(_expenses.Where(exp => exp.Name.Contains(request.Filter, StringComparison.CurrentCultureIgnoreCase)));
+    }
+
+    [Fact]
+    public async Task Handler_Should_ReturnSuccess_With_Different_Insertion_Dates()
+    {
+        var request = new GetExpensesDto(UserId, "TELEVISION", DateTime.UtcNow);
+        var query = new GetExpensesQuery(request);
+        var handler = CreateHandler(request);
+
+        var result = await handler.Handle(query, default);
+
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Expenses.Should().BeEmpty();
     }
 
     private GetExpensesQueryHandler CreateHandler(GetExpensesDto? dto = null)
