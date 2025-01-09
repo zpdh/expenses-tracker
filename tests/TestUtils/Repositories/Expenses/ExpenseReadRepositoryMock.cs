@@ -1,4 +1,5 @@
-﻿using ExpensesTracker.Domain.Entities;
+﻿using ExpensesTracker.Domain.Dtos;
+using ExpensesTracker.Domain.Entities;
 using ExpensesTracker.Domain.Infrastructure.Repositories.Expenses;
 using Moq;
 
@@ -8,9 +9,13 @@ public static class ExpenseReadRepositoryMock
 {
     public static Mock<IExpenseReadRepository> Create => new();
 
-    public static void SetupGetExpensesByUseridAsync(Mock<IExpenseReadRepository> mock, List<Expense> expenses, int userId)
+    public static void SetupGetExpensesByUserIdAsync(
+        Mock<IExpenseReadRepository> mock,
+        List<Expense> expenses,
+        GetExpensesDto dto)
     {
-        mock.Setup(moq => moq.GetExpensesByUserIdAsync(userId, "")).ReturnsAsync(expenses);
+        mock.Setup(moq => moq.GetExpensesByUserIdAsync(dto))
+            .ReturnsAsync(expenses.Where(expense => expense.Name.Contains(dto.Filter, StringComparison.CurrentCultureIgnoreCase)).ToList);
     }
 
     public static void SetupExpenseExists(Mock<IExpenseReadRepository> mock, int userId, int categoryId)
