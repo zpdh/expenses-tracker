@@ -1,3 +1,8 @@
 ﻿namespace ExpensesTracker.Domain.Requests.Expense;
 
-public sealed record GetExpensesRequest(string Filter = "");
+public sealed record GetExpensesRequest(string Filter, DateTime Since)
+{
+    public GetExpensesRequest() : this(string.Empty, DateTime.UtcNow.AddDays(-7))
+    {
+    }
+}
