@@ -8,7 +8,7 @@ import {GetExpensesRequest} from '../communication/expenses/get/getExpensesReque
   providedIn: 'root'
 })
 export class ExpensesService {
-  private readonly apiUrl = "http://localhost:5124/api/user/login";
+  private readonly apiUrl = "http://localhost:5124/api/expenses";
   private readonly httpClient: HttpClient;
 
   constructor(client: HttpClient) {
