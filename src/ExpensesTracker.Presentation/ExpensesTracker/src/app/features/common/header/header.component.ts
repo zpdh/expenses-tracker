@@ -16,13 +16,13 @@ export class HeaderComponent {
   private readonly authService: AuthService;
   private readonly router: Router;
 
+  protected isLoginPage = false;
+
   constructor(authService: AuthService, router: Router) {
     this.router = router;
     this.authService = authService;
-  }
 
-  protected isLoginPage(): boolean {
-    return this.router.url === "login";
+    this.router.events.subscribe(() => this.isLoginPage = this.router.url === "/login");
   }
 
   protected logout() {

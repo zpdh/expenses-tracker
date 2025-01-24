@@ -2,7 +2,7 @@
 
 public sealed record GetExpensesRequest(string Filter, DateTime Since)
 {
-    public GetExpensesRequest() : this(string.Empty, DateTime.UtcNow.AddDays(-7))
+    public GetExpensesRequest() : this(string.Empty, DateTime.MinValue)
     {
     }
 }
