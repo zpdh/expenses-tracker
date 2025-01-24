@@ -2,10 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {GetExpensesResponse} from '../../core/communication/expenses/get/getExpensesResponse';
 import {ExpensesService} from '../../core/services/expenses.service';
 import {GetExpensesRequest} from '../../core/communication/expenses/get/getExpensesRequest';
+import {CurrencyPipe, DatePipe, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-expenses',
-  imports: [],
+  imports: [
+    NgIf,
+    NgForOf,
+    DatePipe,
+    CurrencyPipe
+  ],
   templateUrl: './expenses.component.html',
   standalone: true,
 })
@@ -17,7 +23,7 @@ export class ExpensesComponent implements OnInit {
 
   protected request: GetExpensesRequest = {
     filter: '',
-    since: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) // get current date - 7 days in milliseconds
+    since: new Date(0),
   }
 
   constructor(expensesService: ExpensesService) {
@@ -28,7 +34,7 @@ export class ExpensesComponent implements OnInit {
     this.loadExpenses();
   }
 
-  private loadExpenses() {
+  protected loadExpenses() {
     this.expensesService.getExpenses(this.request).subscribe({
       next: (res) => this.expenses = res,
       error: (err) => this.errorMessage = "Failed to load expenses.",

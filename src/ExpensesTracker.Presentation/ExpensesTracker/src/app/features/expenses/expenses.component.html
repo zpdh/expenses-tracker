@@ -1,1 +1,39 @@
-<p>expenses works!</p>
+<div class="mt-4">
+  <div class="d-flex justify-content between align-items center mb-0">
+    <h2>
+      Your Expenses
+    </h2>
+  </div>
+  <button class="btn btn-primary mb-4" (click)="loadExpenses()">
+    Refresh
+  </button>
+  <div *ngIf="expenses && expenses.length > 0; else noExpenses" class="row g-3">
+    <div *ngFor="let expense of expenses" class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ expense.name }}
+          </h5>
+          <p class="card-text">
+            <span class="badge bg-secondary">
+              Category ID: {{ expense.categoryId }}
+            </span>
+            <span class="d-block mt-2">
+              {{ expense.insertionDate | date }}
+            </span>
+          </p>
+          <p class="h4 text-primary">
+            {{ expense.price | currency }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-template #noExpenses>
+    <div class="alert alert-info">
+      No expenses found for this period of time.
+    </div>
+  </ng-template>
+</div>
