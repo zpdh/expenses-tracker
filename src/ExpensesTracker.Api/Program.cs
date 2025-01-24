@@ -10,9 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddControllers();
-builder.Services.AddRouting(opt => {
-    opt.LowercaseUrls = true;
-    opt.LowercaseQueryStrings = true;
+
+builder.Services.AddRouting(options => {
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("TestingPolicy",
+        policy => {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,6 +55,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler(_ => { });
+
+app.UseCors("TestingPolicy");
 
 app.UseHttpsRedirection();
 

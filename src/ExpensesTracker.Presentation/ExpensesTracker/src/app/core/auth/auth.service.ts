@@ -8,7 +8,7 @@ import {tap} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = "";
+  private readonly apiUrl = "http://localhost:5124/api/user/login";
   private readonly client: HttpClient;
   private tokenKey = "auth_token";
 
