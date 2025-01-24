@@ -23,7 +23,7 @@ public class ExpensesController : ApiController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetExpenses([FromBody] GetExpensesRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetExpenses([FromQuery] GetExpensesRequest request, CancellationToken cancellationToken)
     {
         var userId = _userAccessor.GetRequestingUserId();
         var dto = new GetExpensesDto(userId, request.Filter, request.Since);

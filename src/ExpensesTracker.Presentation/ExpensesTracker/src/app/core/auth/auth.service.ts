@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LoginRequest} from '../communication/login/loginRequest';
 import {LoginResponse} from '../communication/login/loginResponse';
-import {tap} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,15 @@ export class AuthService {
     this.client = client;
   }
 
-  getToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
-  setToken(token: string) {
+  public setToken(token: string) {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  login(request: LoginRequest) {
+  public login(request: LoginRequest): Observable<LoginResponse> {
     return this.client.post<LoginResponse>(this.apiUrl, request)
       .pipe(
         tap(
@@ -32,8 +32,7 @@ export class AuthService {
         ));
   }
 
-
-  logout() {
+  public logout() {
     localStorage.removeItem(this.tokenKey);
   }
 }

@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  standalone: true,
-  styleUrl: './app.component.css'
+  template: `
+    <router-outlet></router-outlet>
+  `,
 })
+
 export class AppComponent {
   title = 'ExpensesTracker';
 }
