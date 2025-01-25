@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from '../../core/auth/auth.service';
 import {Router, RouterLink} from '@angular/router';
-import {LoginRequestImpl} from '../../core/communication/login/loginRequest';
+import {LoginRequest} from '../../core/communication/login/loginRequest';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -26,7 +26,10 @@ export class LoginComponent {
   }
 
   protected onSubmit() {
-    const request = new LoginRequestImpl(this.email, this.password);
+    const request: LoginRequest = {
+      email: this.email,
+      password: this.password
+    }
 
     this.authService.login(request).subscribe({
       next: () => this.router.navigate(['/expenses']),
