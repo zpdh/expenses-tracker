@@ -26,16 +26,6 @@ public abstract class Entity : IEquatable<Entity>
         return Id == other.Id;
     }
 
-    public static bool operator ==(Entity? first, Entity? second)
-    {
-        return first is not null && second is not null && first.Equals(second);
-    }
-
-    public static bool operator !=(Entity? first, Entity? second)
-    {
-        return !(first == second);
-    }
-
     public override bool Equals(object? obj)
     {
         if (IsNullOrDifferentType(obj))
@@ -49,6 +39,16 @@ public abstract class Entity : IEquatable<Entity>
         }
 
         return entity.Id == Id;
+    }
+
+    public static bool operator ==(Entity? first, Entity? second)
+    {
+        return first is not null && second is not null && first.Equals(second);
+    }
+
+    public static bool operator !=(Entity? first, Entity? second)
+    {
+        return !(first == second);
     }
 
     private bool IsNullOrDifferentType([NotNullWhen(false)] object? obj)

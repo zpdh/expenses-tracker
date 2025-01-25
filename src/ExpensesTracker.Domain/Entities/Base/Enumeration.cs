@@ -29,6 +29,11 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
 
         return GetType() == other.GetType() && Id == other.Id;
     }
+    
+    public override bool Equals(object? obj)
+    {
+        return obj is Enumeration<TEnum> other && Equals(other);
+    }
 
     public static TEnum? FromValue(int value)
     {
@@ -55,11 +60,6 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
             .Select(fieldInfo => (TEnum)fieldInfo.GetValue(default)!);
 
         return fields.ToDictionary(type => type.Id);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        return obj is Enumeration<TEnum> other && Equals(other);
     }
 
     public override int GetHashCode()

@@ -6,19 +6,21 @@
           <h2 class="text-center mb-4">Login</h2>
           <form (submit)="onSubmit()">
             <div class="mb-3">
-              <label class="form-label">Email</label>
+              <label for="email" class="form-label">Email</label>
               <input [(ngModel)]="email"
                      type="email"
                      name="email"
                      class="form-control"
+                     id="email"
                      required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Password</label>
+              <label for="password" class="form-label">Password</label>
               <input [(ngModel)]="password"
                      type="password"
                      name="password"
                      class="form-control"
+                     id="password"
                      required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>

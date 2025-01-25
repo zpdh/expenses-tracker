@@ -11,7 +11,7 @@ import {RegisterRequest} from '../communication/register/registerRequest';
 export class AuthService {
   private readonly apiUrl = "http://localhost:5124/api/user";
   private readonly httpClient: HttpClient;
-  private tokenKey = "auth_token";
+  private readonly tokenKey = "auth_token";
 
   constructor(client: HttpClient) {
     this.httpClient = client;

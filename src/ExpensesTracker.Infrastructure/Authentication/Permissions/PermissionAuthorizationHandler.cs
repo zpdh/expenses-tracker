@@ -6,11 +6,8 @@ namespace ExpensesTracker.Infrastructure.Authentication.Permissions;
 
 public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
 {
-    private readonly IServiceScopeFactory _serviceScopeFactory;
-
-    public PermissionAuthorizationHandler(IServiceScopeFactory serviceScopeFactory)
+    public PermissionAuthorizationHandler()
     {
-        _serviceScopeFactory = serviceScopeFactory;
     }
 
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
