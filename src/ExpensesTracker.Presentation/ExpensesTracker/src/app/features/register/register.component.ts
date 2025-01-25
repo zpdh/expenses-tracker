@@ -12,7 +12,6 @@ import {FormsModule} from '@angular/forms';
   ],
   templateUrl: './register.component.html',
   standalone: true,
-  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   private readonly authService: AuthService;
