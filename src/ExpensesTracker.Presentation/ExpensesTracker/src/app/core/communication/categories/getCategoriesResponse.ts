@@ -1,3 +1,5 @@
 ﻿import {Category} from '../../models/category';
 
-export type GetCategoriesResponse = Category[];
+export interface GetCategoriesResponse {
+  categories: Category[],
+}

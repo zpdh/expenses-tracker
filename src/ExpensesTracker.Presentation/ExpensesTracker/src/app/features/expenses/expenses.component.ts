@@ -3,6 +3,7 @@ import {GetExpensesResponse} from '../../core/communication/expenses/get/getExpe
 import {ExpensesService} from '../../core/services/expenses.service';
 import {GetExpensesRequest} from '../../core/communication/expenses/get/getExpensesRequest';
 import {CurrencyPipe, DatePipe, NgForOf, NgIf} from '@angular/common';
+import {AddExpenseModalComponent} from '../common/add-expense-modal/add-expense-modal.component';
 
 @Component({
   selector: 'app-expenses',
@@ -10,7 +11,8 @@ import {CurrencyPipe, DatePipe, NgForOf, NgIf} from '@angular/common';
     NgIf,
     NgForOf,
     DatePipe,
-    CurrencyPipe
+    CurrencyPipe,
+    AddExpenseModalComponent
   ],
   templateUrl: './expenses.component.html',
   standalone: true,
@@ -19,6 +21,7 @@ export class ExpensesComponent implements OnInit {
   private readonly expensesService: ExpensesService;
 
   protected expenses: GetExpensesResponse | null = null;
+  protected showAddModal = false;
   protected errorMessage = '';
 
   protected request: GetExpensesRequest = {

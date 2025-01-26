@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GetExpensesResponse} from '../communication/expenses/get/getExpensesResponse';
 import {GetExpensesRequest} from '../communication/expenses/get/getExpensesRequest';
+import {AddExpenseRequest} from '../communication/expenses/add/addExpenseRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class ExpensesService {
         since: request.since.toISOString()
       }
     });
+  }
+
+  public addExpense(request: AddExpenseRequest): Observable<void> {
+    return this.httpClient.post<void>(this.apiUrl, request);
   }
 
   public deleteExpense(expenseId: number): Observable<void> {

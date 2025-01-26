@@ -1,0 +1,72 @@
+<div class="modal-backdrop show" (click)="close()"></div>
+<div class="modal show d-block" tabindex="-1">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Add new Expense
+        </h5>
+        <button type="button" class="btn-close" (click)="close()"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="onSubmit()">
+          <div class="mb-3">
+            <label for="category" class="form-label">
+              Category
+            </label>
+            <select class="form-select"
+                    [(ngModel)]="newExpense.categoryId"
+                    name="categoryId"
+                    id="category"
+                    required>
+              <option *ngFor=" let cat of categories" [value]="cat.id">
+                {{ cat.name }}
+              </option>
+              <option *ngIf="categories.length === 0" disabled>
+                No Categories available.
+              </option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">
+              Name
+            </label>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="newExpense.name"
+                   name="name"
+                   id="name"
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">
+              Expenses' Price
+            </label>
+            <input type="number"
+                   class="form-control"
+                   [(ngModel)]="newExpense.price"
+                   name="price"
+                   id="price"
+                   step="0.5"
+                   required>
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="close()">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-success">
+              Add Expense
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
