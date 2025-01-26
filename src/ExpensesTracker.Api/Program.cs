@@ -19,7 +19,7 @@ builder.Services.AddRouting(options => {
 builder.Services.AddCors(options => {
     options.AddPolicy("TestingPolicy",
         policy => {
-            policy.AllowAnyOrigin()
+            policy.WithOrigins("http://localhost:4200/")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

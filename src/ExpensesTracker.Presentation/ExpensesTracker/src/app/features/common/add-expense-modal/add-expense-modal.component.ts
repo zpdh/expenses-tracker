@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AddExpenseRequest} from '../../../core/communication/expenses/add/addExpenseRequest';
-import {GetCategoriesResponse} from '../../../core/communication/categories/getCategoriesResponse';
 import {CategoryService} from '../../../core/services/category.service';
 import {ExpensesService} from '../../../core/services/expenses.service';
 import {FormsModule} from '@angular/forms';
@@ -64,5 +63,8 @@ export class AddExpenseModalComponent implements OnInit {
   close() {
     this.closed.emit();
   }
+
+  protected readonly onkeydown = onkeydown;
+  protected readonly KeyboardEvent = KeyboardEvent;
 }
 

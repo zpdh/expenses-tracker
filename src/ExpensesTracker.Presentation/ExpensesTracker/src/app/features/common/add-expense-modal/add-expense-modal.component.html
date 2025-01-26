@@ -1,6 +1,15 @@
-<div class="modal-backdrop show" (click)="close()"></div>
-<div class="modal show d-block" tabindex="-1">
-  <div class="modal-dialog" (click)="$event.stopPropagation()">
+<div class="modal-backdrop show"
+     (click)="close()"
+     (keydown.escape)="close()"
+     tabindex="0"
+     role="button"
+     aria-label="Close Modal">
+</div>
+<div class="modal show d-block" tabindex="-1"
+     role="dialog"
+     aria-modal="true">
+  <div class="modal-dialog" (click)="$event.stopPropagation()"
+       role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
