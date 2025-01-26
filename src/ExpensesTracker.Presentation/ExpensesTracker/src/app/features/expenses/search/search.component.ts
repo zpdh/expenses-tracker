@@ -23,7 +23,7 @@ export class SearchComponent {
   private readonly formBuilder: FormBuilder;
 
   protected searchForm;
-  protected results: GetExpensesResponse = [];
+  protected expenses: GetExpensesResponse = [];
   protected errorMessage = "";
 
   protected datePresets = [
@@ -51,10 +51,20 @@ export class SearchComponent {
         : new Date(0)
     }
 
+
     this.expensesService.getExpenses(request).subscribe({
-      next: (expenses) => this.results = expenses,
+      next: (expenses) => this.expenses = expenses,
       error: (err: Error) => this.errorMessage = `Failed to load results. Error: ${err.message}`
     });
+  }
+
+  protected deleteExpense(expenseId: number) {
+    if (confirm("Are you sure you want to delete this expense?")) {
+      this.expensesService.deleteExpense(expenseId).subscribe({
+        next: () => this.expenses?.filter(exp => exp.id !== expenseId),
+        error: (err: Error) => this.errorMessage = "Failed to delete expense"
+      });
+    }
   }
 
   setDatePreset(days: number) {

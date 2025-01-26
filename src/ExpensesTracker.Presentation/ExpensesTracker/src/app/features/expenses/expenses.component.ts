@@ -40,4 +40,13 @@ export class ExpensesComponent implements OnInit {
       error: (err) => this.errorMessage = "Failed to load expenses.",
     });
   }
+
+  protected deleteExpense(expenseId: number) {
+    if (confirm("Are you sure you want to delete this expense?")) {
+      this.expensesService.deleteExpense(expenseId).subscribe({
+        next: () => this.expenses?.filter(exp => exp.id !== expenseId),
+        error: (err: Error) => this.errorMessage = "Failed to delete expense"
+      });
+    }
+  }
 }

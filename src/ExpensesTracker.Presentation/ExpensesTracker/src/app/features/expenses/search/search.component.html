@@ -59,12 +59,12 @@
           {{ errorMessage }}
         </div>
 
-        <div *ngIf="results.length === 0" class="alert alert-info">
+        <div *ngIf="expenses.length === 0" class="alert alert-info">
           No expenses found matching your criteria.
         </div>
 
         <div class="row g-3">
-          <div *ngFor="let expense of results" class="col-md-6 col-lg-4">
+          <div *ngFor="let expense of expenses" class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
               <div class="card-body">
                 <h5 class="card-title">
@@ -81,6 +81,9 @@
                 <p class="h4 text-primary">
                   {{ expense.price | currency }}
                 </p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <button class="btn btn-danger btn-sm" (click)="deleteExpense(expense.id)">Delete</button>
               </div>
             </div>
           </div>

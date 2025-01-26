@@ -23,4 +23,10 @@ export class ExpensesService {
       }
     });
   }
+
+  public deleteExpense(expenseId: number): Observable<void> {
+    return this.httpClient.delete<void>(this.apiUrl, {
+      body: {expenseId}
+    });
+  }
 }
