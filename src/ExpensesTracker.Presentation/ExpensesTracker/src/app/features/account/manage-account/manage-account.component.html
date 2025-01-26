@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center mb-4">
+            Manage Account
+          </h2>
+
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <form *ngIf="userData">
+            <div class="mb-3">
+              <label for="name" class="form-label">
+                Name
+              </label>
+              <input
+                [formControl]="nameControl"
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                readonly>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                Email
+              </label>
+              <input
+                [formControl]="emailControl"
+                type="text"
+                name="email"
+                id="email"
+                class="form-control"
+                readonly>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteAccount()">
+                Delete Account
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

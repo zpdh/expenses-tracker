@@ -3,6 +3,8 @@ import {LoginComponent} from './features/login/login.component';
 import {ExpensesComponent} from './features/expenses/expenses.component';
 import {authGuard} from './core/auth/auth.guard';
 import {RegisterComponent} from './features/register/register.component';
+import {ManageAccountComponent} from './features/account/manage-account/manage-account.component';
+import {SearchComponent} from './features/expenses/search/search.component';
 
 export const routes: Routes = [
   {
@@ -13,6 +15,16 @@ export const routes: Routes = [
   {
     path: 'expenses',
     component: ExpensesComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'account',
+    component: SearchComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'search',
+    component: ManageAccountComponent,
     canActivate: [authGuard]
   },
   {
