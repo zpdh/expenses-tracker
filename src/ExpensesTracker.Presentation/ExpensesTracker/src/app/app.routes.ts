@@ -19,12 +19,12 @@ export const routes: Routes = [
   },
   {
     path: 'account',
-    component: SearchComponent,
+    component: ManageAccountComponent,
     canActivate: [authGuard]
   },
   {
     path: 'search',
-    component: ManageAccountComponent,
+    component: SearchComponent,
     canActivate: [authGuard]
   },
   {

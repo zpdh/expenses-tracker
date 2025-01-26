@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="card-title mb-4">
+        Search Expenses
+      </div>
+
+      <form [formGroup]="searchForm" (ngSubmit)="search()">
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="name-filter" class="form-label">
+              Search by Name
+            </label>
+            <input type="text"
+                   name="name-filter"
+                   id="name-filter"
+                   formControlName="filter"
+                   placeholder="Enter expense name..."
+                   class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label for="date-filter-btn" class="form-label">
+              Quick Date Filters
+            </label>
+            <div class="d-flex gap-2 flex-wrap">
+              <button *ngFor="let preset of datePresets"
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      (click)="setDatePreset(preset.days)"
+                      id="date-filter-btn">
+                {{ preset.label }}
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="date-picker" class="form-label">
+              From Date
+            </label>
+            <input type="date"
+                   name="date-picker"
+                   id="date-picker"
+                   class="form-control"
+                   formControlName="since">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">
+            Search
+          </button>
+        </div>
+      </form>
+
+      <!-- Results -->
+      <div class="mt-4">
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
+        <div *ngIf="results.length === 0" class="alert alert-info">
+          No expenses found matching your criteria.
+        </div>
+
+        <div class="row g-3">
+          <div *ngFor="let expense of results" class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">
+                  {{ expense.name }}
+                </h5>
+                <p class="card-text">
+                  <span class="badge bg-secondary">
+                    Category ID: {{ expense.categoryId }}
+                  </span>
+                  <span class="d-block mt-2">
+                    {{ expense.insertionDate | date }}
+                  </span>
+                </p>
+                <p class="h4 text-primary">
+                  {{ expense.price | currency }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

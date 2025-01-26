@@ -21,6 +21,6 @@ export class ExpensesService {
         filter: request.filter,
         since: request.since.toISOString()
       }
-    })
+    });
   }
 }
